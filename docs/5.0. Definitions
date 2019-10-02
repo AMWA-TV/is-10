@@ -1,0 +1,44 @@
+# Definitions
+
+_See also the [NMOS Glossary](https://github.com/AMWA-TV/nmos/wiki/Glossary) for concepts regarding the [JT-NM reference architecture](http://jt-nm.org/), and definitions within RFCs._
+
+
+## API
+
+An HTTP / WebSocket API as defined in an AMWA NMOS Specification (IS-04, IS-05, IS-06, etc.)
+
+## Client
+
+The entity that is using the API, for example:
+
+- a Node using the IS-04 Registration API
+- a monitoring application using the IS-04 Query API
+- a connection control application using the IS-05 Connection API
+
+## Protected Resource
+
+Any part the API that is access restricted. This may apply to read (e.g GET) or write (e.g POST) operations.
+
+### Resource Owner
+
+An entity capable of granting the client access to a protected resource. When the resource owner is a person, it is referred to as an end-user.
+
+## Resource Server
+
+The entity that is providing APIs containing protected resources, for example:
+
+- a Registry implementing IS-04 Registration and Query APIs
+- a Node implementing IS-04 Node API and IS-05 Connection API.
+
+## Authorization Server
+
+The server issuing access tokens to the client after successfully
+authenticating the resource owner and obtaining authorization.
+
+## Access Token
+
+A short-lived JSON Web Token that may be used by a client to access privileged resources on the resource server.
+
+## Bearer Token
+
+Bearer tokens are longer-lived than access tokens. They are passed from the Authorization Server to the client after successful authentication of client credentials, and contain an access token. Bearer tokens can be used to retrieve further access tokens from the Authorization Server once the original access token expires.
