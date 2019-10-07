@@ -1,22 +1,28 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Token Error Response",
-  "description": "Object defining error type and description",
+  "title": "Error Response",
+  "description": "Describes the standard OAuth error response",
   "type": "object",
   "minItems": 1,
   "properties": {
+    "code": {
+      "description": "HTTP error code",
+      "type": "integer",
+      "minimum": 400,
+      "maximum": 599
+    },
     "error": {
       "description": "Error Type",
       "type": "string"
     },
+    "debug": {
+      "description": "Debug information which may assist a programmer working with the API",
+      "type": ["null", "string"]
+    },
     "error_description": {
       "description": "Human-readable ASCII text providing additional information",
       "type": "string"
-    },
-    "error_uri": {
-      "description": "A URI identifying a human-readable web page with information about the error",
-      "type": "string"
     }
   },
-  "required": ["error"] 
+  "required": ["code", "error", "debug"] 
 }
