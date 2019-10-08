@@ -13,7 +13,8 @@
     },
     "error": {
       "description": "Error Type",
-      "type": "string"
+      "type": "string",
+      "enum": ["invalid_request", "invalid_client", "invalid_grant", "unauthorized_client", "unsupported_grant_type", "invalid_scope"]
     },
     "debug": {
       "description": "Debug information which may assist a programmer working with the API",
