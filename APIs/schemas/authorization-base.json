@@ -7,7 +7,7 @@
     "type": "string",
     "enum": [
       "certs/",
-      "register_client/",
+      "register-client/",
       "token/",
       "authorize/",
       "revoke/"

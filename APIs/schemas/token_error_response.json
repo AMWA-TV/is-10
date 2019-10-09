@@ -14,7 +14,7 @@
     "error": {
       "description": "Error Type",
       "type": "string",
-      "enum": ["invalid_request", "invalid_client", "invalid_grant", "unauthorized_client", "unsupported_grant_type", "invalid_scope"]
+      "enum": ["invalid_request", "invalid_client", "invalid_grant", "unauthorized_client", "unsupported_grant_type", "invalid_scope", "unsupported_token_type"]
     },
     "debug": {
       "description": "Debug information which may assist a programmer working with the API",
@@ -22,6 +22,10 @@
     },
     "error_description": {
       "description": "Human-readable ASCII text providing additional information",
+      "type": "string"
+    },
+    "error_uri": {
+      "description": "A URI identifying a human-readable web page with information about the error",
       "type": "string"
     }
   },
