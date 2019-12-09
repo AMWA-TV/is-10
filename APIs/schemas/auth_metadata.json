@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "title": "Authorization API metadata resource",
+  "description": "Displays the Authorization server metadata",
+  "properties": {
+  }
+}

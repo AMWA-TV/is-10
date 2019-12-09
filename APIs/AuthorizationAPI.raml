@@ -133,6 +133,16 @@ types:
           type: !include schemas/authorization-base.json
           example: !include ../examples/base-get-200.json
 
+/.well-known/oauth-authorization-server:
+  displayName: Authorization Server Metadata
+  get:
+    description: Identifies the location of OAuth 2.0 API endpoints as defined in RFC 8414.
+    responses:
+      200:
+        body:
+          type: !include schemas/auth_metadata.json
+          example: !include ../examples/auth-metadata-get-200.json
+
 /register-client:
   displayName: Register Clients Resource
   get:
