@@ -209,14 +209,11 @@ types:
           type: !include schemas/token_error_response.json
           example: !include ../examples/token-post-400.json
 
-/certs:
-  displayName: Certificates Resource
+/jwks:
+  displayName: JSON Web Key Set Resource
   get:
     description: |
-      Request the contents of the certs endpoints.
-
-      **Note** - The example array shows a multi-element array for readability purposes only.
-      Each element of the array should be a string containing a single, entire certificate.
+      Request the contents of the JWKs endpoints.
     responses:
       200:
         description: Successful request to obtain JSON dictionary of available public keys to validate token against.
