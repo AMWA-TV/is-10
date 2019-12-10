@@ -6,7 +6,7 @@
   "items": {
     "type": "string",
     "enum": [
-      "certs/",
+      "jwks/",
       "register-client/",
       "token/",
       "authorize/",

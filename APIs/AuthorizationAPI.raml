@@ -221,8 +221,8 @@ types:
       200:
         description: Successful request to obtain JSON dictionary of available public keys to validate token against.
         body:
-          type: !include schemas/certs_response.json
-          example: !include ../examples/certs-get-200.json
+          type: !include schemas/jwks_response.json
+          example: !include ../examples/jwks-get-200.json
 
 /authorize:
   displayName: Authorization Code Resource
