@@ -1,39 +1,42 @@
 #%RAML 1.0
 
-# AMWA NMOS BCP-003 Security: NMOS Authorization API with JSON Web Tokens (JWTs)
+# AMWA NMOS IS-10 Authorization: NMOS Authorization API with JSON Web Tokens (JWTs)
 # (c) AMWA 2019
 
 title: NMOS Authorization
 baseUri: http://api.example.com/x-nmos/auth/{version}
 version: v1.0
 mediaType: application/json
+documentation:
+  - title: Overview
+    content: |
+      The NMOS Authorization API is exposed by an Authorization Server as a standard interface for requesting, revoking,
+      and managing tokens and client registration.
+
+      This is an example implementation only. Authorization Servers may use alternative names for API paths provided
+      these are reflected in the Authorization Server Metadata.
+  - title: Endpoint Discovery
+    content: |
+      The Authorization Server URL is discoverable using unicast and/or multicast DNS using the '_nmos-auth._tcp'
+      service name.
+  - title: Registering Clients
+    content: |
+      The `/register-client` endpoint should be protected by some appropriate authentication scheme to limit the
+      availability of client-registration to valid clients. This is implementation-specific. This may be via the use of
+      user credentials, public/private keys or an initial JWT token. This equally may be administered by an enterprise
+      system such as a Single-Sign-On system. Please see [RFC7591](https://tools.ietf.org/html/rfc7591).
+  - title: Use of HTTPS/TLS
+    content: |
+      The Authorization Server MUST require the use of TLS when sending requests using password authentication or
+      sending requests to the authorization endpoint. The redirection endpoint SHOULD require the use of TLS when the
+      requested response type is "code" or "token".
+
 securitySchemes:
   basic:
     type: Basic Authentication
     displayName: Basic Authentication (client credentials)
     description: |
       This API supports Basic Authentication using client ID and client secret as username and password credentials.
-
-documentation:
-  - title: Overview
-    content: |
-      The NMOS Authorization API is exposed by an Authorization Server as a standard interface for requesting, revoking,
-      and managing tokens and client registration.
-  - title: Endpoint Discovery
-    content: |
-      The Authorization Server URL is discoverable using unicast and/or multicast DNS using the '_nmos-auth._tcp' service name.
-  - title: Registering Clients
-    content: |
-      The `/register-client` endpoint should be protected by some appropriate authentication scheme
-      to limit the availability of client-registration to valid clients. This is implementation-specific.
-      This may be via the use of user credentials, public/private keys or an initial JWT token.
-      This equally may be administered by an enterprise system such as a Single-Sign-On system.
-      Please see [RFC7591](https://tools.ietf.org/html/rfc7591).
-  - title: Use of HTTPS/TLS
-    content: |
-      The authorization server MUST require the use of TLS when sending requests using password authentication or
-      sending requests to the authorization endpoint. The redirection endpoint SHOULD require the use of TLS
-      when the requested response type is "code" or "token".
 
 traits:
   OAuthBasic:
