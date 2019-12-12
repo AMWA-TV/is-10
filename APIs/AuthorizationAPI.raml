@@ -169,6 +169,11 @@ types:
         body:
           type: !include schemas/register_client_response.json
           example: !include ../examples/register-client-post-201.json
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
 
 /token:
   displayName: Request Token Resource
@@ -211,6 +216,11 @@ types:
         body:
           type: !include schemas/token_error_response.json
           example: !include ../examples/token-post-400.json
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
 
 /jwks:
   displayName: JSON Web Key Set Resource
@@ -262,6 +272,11 @@ types:
             example: |
               HTTP/1.1 302 Found
               Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
 
 /revoke:
   displayName: Token Revocation Resource
@@ -275,3 +290,8 @@ types:
     responses:
       200:
         description: the token has been revoked successfully or if the client submitted an invalid token.
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
