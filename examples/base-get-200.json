@@ -1,5 +1,4 @@
 [
-  ".well-known/"
   "jwks/",
   "register-client/",
   "token/",

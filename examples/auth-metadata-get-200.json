@@ -23,5 +23,9 @@
   "service_documentation":
     "http://server.example.com/service_documentation.html",
   "ui_locales_supported":
-    ["en-US", "en-GB", "en-CA", "fr-FR", "fr-CA"]
+    ["en-US", "en-GB", "en-CA", "fr-FR", "fr-CA"],
+  "revocation_endpoint":
+    "https://server.example.com/revoke",
+  "code_challenge_methods_supported":
+    ["S256"]
  }
