@@ -1,6 +1,6 @@
 [
   "jwks/",
-  "register-client/",
+  "register/",
   "token/",
   "authorize/",
   "revoke/"

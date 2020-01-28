@@ -7,7 +7,7 @@
     "type": "string",
     "enum": [
       "jwks/",
-      "register-client/",
+      "register/",
       "token/",
       "authorize/",
       "revoke/"

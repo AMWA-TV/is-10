@@ -21,7 +21,7 @@ documentation:
       service name.
   - title: Registering Clients
     content: |
-      The `/register-client` endpoint should be protected by some appropriate authentication scheme to limit the
+      The `/register` endpoint should be protected by some appropriate authentication scheme to limit the
       availability of client-registration to valid clients. This is implementation-specific. This may be via the use of
       user credentials, public/private keys or an initial JWT token. This equally may be administered by an enterprise
       system such as a Single-Sign-On system. Please see [RFC7591](https://tools.ietf.org/html/rfc7591).
@@ -131,7 +131,7 @@ types:
           type: !include schemas/authorization-base.json
           example: !include ../examples/base-get-200.json
 
-/register-client:
+/register:
   displayName: Register Clients Resource
   get:
     description: UI / Web Form for registering details of OAuth 2.0 clients with the Auth Server.
