@@ -4,7 +4,7 @@
 # (c) AMWA 2020
 
 title: NMOS Authorization Server Metadata
-baseUri: http://api.example.com/x-nmos/auth
+baseUri: http://api.example.com
 mediaType: application/json
 documentation:
   - title: Overview
@@ -21,3 +21,13 @@ documentation:
         body:
           type: !include schemas/auth_metadata.json
           example: !include ../examples/auth-metadata-get-200.json
+
+  /{issuer_id}:
+    displayName: Authorization Server Metadata with issuer identifier
+    get:
+      description: Identifies the location of OAuth 2.0 API endpoints as defined in RFC 8414.
+      responses:
+        200:
+          body:
+            type: !include schemas/auth_metadata.json
+            example: !include ../examples/auth-metadata-issuer-get-200.json
