@@ -6,15 +6,14 @@
   "items": {
     "type": "string",
     "enum": [
-      ".well-known/"
       "jwks/",
-      "register-client/",
+      "register/",
       "token/",
       "authorize/",
       "revoke/"
     ],
-    "minItems": 6,
-    "maxItems": 6,
+    "minItems": 5,
+    "maxItems": 5,
     "uniqueItems": true
   }
 }

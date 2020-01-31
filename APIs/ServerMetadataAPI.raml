@@ -1,0 +1,33 @@
+#%RAML 1.0
+
+# AMWA NMOS IS-10 Authorization: NMOS Authorization Server Metadata
+# (c) AMWA 2020
+
+title: NMOS Authorization Server Metadata
+baseUri: http://api.example.com
+mediaType: application/json
+documentation:
+  - title: Overview
+    content: |
+      The NMOS Authorization API exposes a Server Metadata Endpoint, in line with RFC 8414, at a .well-known location
+      in order for an OAuth 2.0 Client to obtain the information needed to interact with an OAuth 2.0 Authorization Server.
+
+/.well-known/oauth-authorization-server:
+  displayName: Authorization Server Metadata
+  get:
+    description: Identifies the location of OAuth 2.0 API endpoints as defined in RFC 8414.
+    responses:
+      200:
+        body:
+          type: !include schemas/auth_metadata.json
+          example: !include ../examples/auth-metadata-get-200.json
+
+  /{issuer_id}:
+    displayName: Authorization Server Metadata with issuer identifier
+    get:
+      description: Identifies the location of OAuth 2.0 API endpoints as defined in RFC 8414.
+      responses:
+        200:
+          body:
+            type: !include schemas/auth_metadata.json
+            example: !include ../examples/auth-metadata-issuer-get-200.json

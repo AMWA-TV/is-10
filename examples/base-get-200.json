@@ -1,7 +1,6 @@
 [
-  ".well-known/"
   "jwks/",
-  "register-client/",
+  "register/",
   "token/",
   "authorize/",
   "revoke/"
