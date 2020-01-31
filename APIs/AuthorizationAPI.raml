@@ -1,39 +1,40 @@
 #%RAML 1.0
 
-# AMWA NMOS BCP-003 Security: NMOS Authorization API with JSON Web Tokens (JWTs)
-# (c) AMWA 2019
+# AMWA NMOS IS-10 Authorization: NMOS Authorization API with JSON Web Tokens (JWTs)
+# (c) AMWA 2020
 
 title: NMOS Authorization
-baseUri: http://api.example.com/x-nmos/auth/{version}
-version: v1.0
+baseUri: http://api.example.com/{issuer}
+issuer: x-nmos/auth/v1.0
 mediaType: application/json
-securitySchemes:
-  basic:
-    type: Basic Authentication
-    displayName: Basic Authentication (client credentials)
-    description: |
-      This API supports Basic Authentication using client ID and client secret as username and password credentials.
-
 documentation:
   - title: Overview
     content: |
       The NMOS Authorization API is exposed by an Authorization Server as a standard interface for requesting, revoking,
       and managing tokens and client registration.
+
+      This is an example implementation only. Authorization Servers may use alternative names for API paths provided
+      these are reflected in the Authorization Server Metadata.
   - title: Endpoint Discovery
     content: |
-      The Authorization Server URL is discoverable using unicast and/or multicast DNS using the '_nmos-auth._tcp' service name.
+      The Authorization Server URL is discoverable using unicast and/or multicast DNS using the '_nmos-auth._tcp'
+      service name.
   - title: Registering Clients
     content: |
-      The `/register_client` endpoint should be protected by some appropriate authentication scheme
-      to limit the availability of client-registration to valid clients. This is implementation-specific.
-      This may be via the use of user credentials, public/private keys or an initial JWT token.
-      This equally may be administered by an enterprise system such as a Single-Sign-On system.
-      Please see [RFC7591](https://tools.ietf.org/html/rfc7591).
+      The `/register` endpoint should be protected by some appropriate authentication scheme to limit the
+      availability of client-registration to valid clients. This is implementation-specific. This may be via the use of
+      user credentials, public/private keys or an initial JWT token. This equally may be administered by an enterprise
+      system such as a Single-Sign-On system. Please see [RFC7591](https://tools.ietf.org/html/rfc7591).
   - title: Use of HTTPS/TLS
     content: |
-      The authorization server MUST require the use of TLS when sending requests using password authentication or
-      sending requests to the authorization endpoint. The redirection endpoint SHOULD require the use of TLS
-      when the requested response type is "code" or "token".
+      The Authorization Server MUST require the use of TLS when interacting with the /token and /authorize endpoints.
+
+securitySchemes:
+  basic:
+    type: Basic Authentication
+    displayName: Basic Authentication
+    description: |
+      This API supports Basic Authentication using client ID and client secret as username and password credentials respectively.
 
 traits:
   OAuthBasic:
@@ -66,6 +67,15 @@ traits:
         description: Value used by client to maintain state between request and callback
         required: false
         example: state=xyz
+      code_challenge:
+        description: Derived from the code_verifier - a high-entropy cryptographic random string
+        required: false
+      code_challenge_method:
+        description: Code verifier transformation method
+        required: false
+        enum: [plain, S256]
+        default: plain
+
 
 types:
   TokenAuthorizeRequest:
@@ -81,27 +91,15 @@ types:
       redirect_uri:
         description: Absolute URI used by the auth server to redirect the user-agent, previously established during client registration
         type: string
+        required: true
       client_id:
         description: The identifier of the client authenticating
         type: string
-  TokenPasswordRequest:
-    properties:
-      grant_type:
-        description: The OAuth 2.0 grant type of the request
-        type: string
         required: true
-      username:
-        description: Username for the Password Credentials Grant
+      code_verifier:
+        description: Client-generated, high-entropy cryptographic random STRING with a minimum length of 43 characters and a maximum length of 128 characters
         type: string
-        required: true
-      password:
-        description: Password for the Password Credentials grant_type
-        type: string
-        required: true
-      scope:
-        description: The scope of the access request
-        type: string
-        required: true
+        required: false
   TokenRefreshRequest:
     properties:
         grant_type:
@@ -133,7 +131,7 @@ types:
           type: !include schemas/authorization-base.json
           example: !include ../examples/base-get-200.json
 
-/register_client:
+/register:
   displayName: Register Clients Resource
   get:
     description: UI / Web Form for registering details of OAuth 2.0 clients with the Auth Server.
@@ -156,14 +154,19 @@ types:
         body:
           type: !include schemas/register_client_response.json
           example: !include ../examples/register-client-post-201.json
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
 
 /token:
   displayName: Request Token Resource
   post:
     description: |
-      Method for requesting OAuth 2.0 Bearer Token (Authorization, Password and Refresh Grants.)
+      Method for requesting OAuth 2.0 Bearer Token (Authorization Code and Refresh Grants.)
 
-      **Note** - The data flow is dependant on the chosen grant type (e.g. password, authorization_code, refresh grant, etc.)
+      **Note** - The data flow is dependant on the chosen grant type (e.g. authorization_code, refresh grant, etc.)
 
       **Note** - Request examples may render as JSON objects, but should be passed in as the `application/x-www-form-urlencoded`
       MIME type, in accordance with [RFC6749](https://tools.ietf.org/html/rfc6749).
@@ -171,13 +174,8 @@ types:
     is: ["OAuthBasic"]
     body:
       application/x-www-form-urlencoded:
-        type: TokenPasswordRequest | TokenAuthorizeRequest | TokenRefreshRequest
+        type: TokenAuthorizeRequest | TokenRefreshRequest
         examples:
-          PasswordGrant:
-            grant_type: password
-            username: Joe Bloggs
-            password: secret
-            scope: photos
           AuthCodeGrant:
             grant_type: authorization_code
             code: SplxlOBeZQQYbYS6WxSbIA
@@ -198,21 +196,25 @@ types:
         body:
           type: !include schemas/token_error_response.json
           example: !include ../examples/token-post-400.json
-
-/certs:
-  displayName: Certificates Resource
-  get:
-    description: |
-      Request the contents of the certs endpoints.
-
-      **Note** - The example array shows a multi-element array for readability purposes only.
-      Each element of the array should be a string containing a single, entire certificate.
+      401:
+        description: Unsuccessful Client Authentication
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
     responses:
       200:
-        description: Successful request to obtain JSON dictionary of available public keys to validate token against.
+      403:
+
+/jwks:
+  displayName: JSON Web Key Set Resource
+  get:
+    description: |
+      Request the contents of the JWKs endpoints.
+    responses:
+      200:
+        description: Successful request to obtain JSON dictionary of available JSON Web Keys to validate token against.
         body:
-          type: !include schemas/certs_response.json
-          example: !include ../examples/certs-get-200.json
+          type: !include schemas/jwks_response.json
+          example: !include ../examples/jwks-get-200.json
 
 /authorize:
   displayName: Authorization Code Resource
@@ -252,16 +254,26 @@ types:
             example: |
               HTTP/1.1 302 Found
               Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
 
 /revoke:
   displayName: Token Revocation Resource
-  securedBy: basic
-  is: ["OAuthBasic"]
   post:
     description: Endpoint for revoking specific access/refresh tokens.
+    securedBy: basic
+    is: ["OAuthBasic"]
     body:
       application/x-www-form-urlencoded:
         type: RevokeRequest
     responses:
       200:
         description: the token has been revoked successfully or if the client submitted an invalid token.
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:

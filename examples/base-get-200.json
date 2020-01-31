@@ -1,6 +1,6 @@
 [
-  "certs/",
-  "register_client/",
+  "jwks/",
+  "register/",
   "token/",
   "authorize/",
   "revoke/"
