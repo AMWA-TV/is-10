@@ -23,7 +23,8 @@
             "type": "string"
           },
           "kid": {
-            "type": "string"
+            "type": "string",
+            "pattern": "^(x-nmos-[0-9]+)$"
           },
           "x5u": {
             "type": "string",
