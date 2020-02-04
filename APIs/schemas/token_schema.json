@@ -39,12 +39,15 @@
       "patternProperties": {
       	"[a-zA-Z]": {
           "type": "object",
+          "minProperties": 1,
           "patternProperties": {
           	"^read$|^write$": {
           	  "type": "array",
               "items": {
                 "type": "string"
-              }
+              },
+              "minItems": 1
+
           	}
           }
         }
