@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "JSON Web Token Contents",
   "description": "Claims contained within JSON Web Token",
   "type": "object",
@@ -14,15 +14,15 @@
       "type": "string"
     },
     "aud": {
-      "description": "The fully resolved domain name of the intended recipient, or a domain name containing wild-card characters",
+      "description": "The fully qualified domain name of the intended recipient (Resource Server), or a domain name containing wild-card characters",
       "type": "string"
     },
     "exp": {
-      "description": "The UTC epoch time at which the token expires",
+      "description": "The UTC time at which the token expires",
       "type": "number"
     },
     "iat": {
-      "description": "The UTC epoch time at which the token was issued",
+      "description": "The UTC time at which the token was issued",
       "type": "number"
     },
     "client_id": {
@@ -37,18 +37,17 @@
       "description": "An object containing the access permissions of the user for the listed NMOS APIs",
       "type": "object",
       "patternProperties": {
-      	"[a-zA-Z]": {
+        "[a-z_-]": {
           "type": "object",
           "minProperties": 1,
           "patternProperties": {
-          	"^read$|^write$": {
-          	  "type": "array",
+            "^read$|^write$": {
+              "type": "array",
               "items": {
                 "type": "string"
               },
               "minItems": 1
-
-          	}
+            }
           }
         }
       }
