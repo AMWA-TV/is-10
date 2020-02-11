@@ -15,7 +15,10 @@
     },
     "aud": {
       "description": "The fully qualified domain name of the intended recipient (Resource Server), or a domain name containing wild-card characters",
-      "type": "string"
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     },
     "exp": {
       "description": "The UTC time at which the token expires",
