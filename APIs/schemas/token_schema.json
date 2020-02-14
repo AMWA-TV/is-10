@@ -1,0 +1,60 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "JSON Web Token Contents",
+  "description": "Claims contained within JSON Web Token",
+  "type": "object",
+  "properties": {
+    "iss": {
+      "description": "The DNS name of the Authorization Server issuing the token",
+      "type": "string",
+      "format": "uri"
+    },
+    "sub": {
+      "description": "The unique identifier assigned to the end-user by the user authorization system",
+      "type": "string"
+    },
+    "aud": {
+      "description": "The fully qualified domain name of the intended recipient (Resource Server), or a domain name containing wild-card characters",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "exp": {
+      "description": "The UTC time at which the token expires",
+      "type": "number"
+    },
+    "iat": {
+      "description": "The UTC time at which the token was issued",
+      "type": "number"
+    },
+    "client_id": {
+      "description": "The client identifier of the OAuth 2.0 client that requested the token",
+      "type": "string"
+    },
+    "scope": {
+      "description": "A string containing a space-separated list of scopes associated with the token",
+      "type": "string"
+    },
+    "x-nmos-api": {
+      "description": "An object containing the access permissions of the user for the listed NMOS APIs",
+      "type": "object",
+      "patternProperties": {
+        "[a-z_-]": {
+          "type": "object",
+          "minProperties": 1,
+          "patternProperties": {
+            "^read$|^write$": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            }
+          }
+        }
+      }
+    }
+  },
+  "required": ["iss", "sub", "aud", "exp", "client_id", "x-nmos-api"]
+}

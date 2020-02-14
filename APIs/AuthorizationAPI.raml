@@ -4,8 +4,10 @@
 # (c) AMWA 2020
 
 title: NMOS Authorization
-baseUri: http://api.example.com/{issuer}
-issuer: x-nmos/auth/v1.0
+baseUri: https://api.example.com/{issuer_id_path}
+baseUriParameters:
+  issuer_id_path:
+    description: The OPTIONAL path component of the issuer ID, in accordance with Section 3 of RFC 8414.
 mediaType: application/json
 documentation:
   - title: Overview

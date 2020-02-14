@@ -22,8 +22,8 @@ documentation:
           type: !include schemas/auth_metadata.json
           example: !include ../examples/auth-metadata-get-200.json
 
-  /{issuer_id}:
-    displayName: Authorization Server Metadata with issuer identifier
+  /{issuer_id_path}:
+    displayName: Authorization Server Metadata with issuer identifier path
     get:
       description: Identifies the location of OAuth 2.0 API endpoints as defined in RFC 8414.
       responses:
