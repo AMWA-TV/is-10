@@ -2,14 +2,12 @@
 
 AMWA IS-10 specifies an API for the authorization of other NMOS APIs. 
 
-This repository provides the "source" for this Specification.
-
-For an HTML rendering of this Specification see <https://amwa-tv.github.io/nmos-authorization>
+## Getting started
 
 Readers are advised to be familiar with:
 
-- The [overview of Networked Media Open Specifications](https://amwa-tv.github.io/nmos)
-- [AMWA BCP-003](https://amwa-tv.github.io/nmos-api-security) Best Practices for NMOS API Security
+- The [overview of Networked Media Open Specifications](https://github.com/AMWA-TV/nmos)
+- [AMWA BCP-003](https://github.com/AMWA-TV/nmos-api-security) Best Practices for NMOS API Security
 
 Readers should then read the [documentation](docs/) in this repository, and the [APIs](APIs/), which are written in RAML -- if a suitable tool is not available for reading this, then [this](APIs/generateHTML) will create HTML versions.
 
