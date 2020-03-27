@@ -156,6 +156,11 @@ types:
         body:
           type: !include schemas/register_client_response.json
           example: !include ../examples/register-client-post-201.json
+      400:
+        description: Unsuccessful client registration (in line with Section 3.2.2. of RFC 7591)
+        body:
+          type: !include schemas/token_error_response.json
+          example: !include ../examples/token-post-400.json
   options:
     description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
     responses:
