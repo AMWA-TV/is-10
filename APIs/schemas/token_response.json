@@ -1,5 +1,5 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
   "title": "Token Response",
   "description": "OAuth2 Response for the request of a Bearer Token",
   "type": "object",
