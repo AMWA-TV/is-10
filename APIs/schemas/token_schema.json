@@ -6,8 +6,7 @@
   "properties": {
     "iss": {
       "description": "The DNS name of the Authorization Server issuing the token",
-      "type": "string",
-      "format": "uri"
+      "type": "string"
     },
     "sub": {
       "description": "The unique identifier assigned to the end-user by the user authorization system",
