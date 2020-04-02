@@ -42,7 +42,7 @@
         },
         "required": ["kty"]
       }
-    },
-    "required": ["keys"]
-  }
+    }
+  },
+  "required": ["keys"]
 }
