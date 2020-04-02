@@ -38,6 +38,7 @@
     "x-nmos-api": {
       "description": "An object containing the access permissions of the user for the listed NMOS APIs",
       "type": "object",
+      "additionalProperties": false,
       "patternProperties": {
         "^[a-z_-]+$": {
           "type": "object",
