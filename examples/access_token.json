@@ -1,7 +1,7 @@
 {
-  "iss": "https://auth.example.com",
+  "iss": "auth.example.com",
   "sub": "username@example.com",
-  "aud": ["https://node-*.example.com"],
+  "aud": ["*.example.com"],
   "iat": 1548779460,
   "exp": 1548783060,
   "scope": "registration query connection",
