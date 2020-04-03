@@ -13,7 +13,7 @@
       "type": "string"
     },
     "aud": {
-      "description": "A JSON array of case-sensitive trings, each containing a StringOrURI value that identifies the recipients that the JWT is intended for",
+      "description": "A JSON array of case-sensitive strings, each containing a StringOrURI value that identifies the recipients that the JWT is intended for",
       "type": "array",
       "items": {
         "type": "string"
