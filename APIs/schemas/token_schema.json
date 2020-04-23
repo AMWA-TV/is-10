@@ -5,7 +5,7 @@
   "type": "object",
   "properties": {
     "iss": {
-      "description": "The DNS name of the Authorization Server issuing the token",
+      "description": "A case-sensitive string containing a StringOrURI value that identifies the Authorization Server that issued the JWT",
       "type": "string"
     },
     "sub": {
@@ -13,7 +13,7 @@
       "type": "string"
     },
     "aud": {
-      "description": "The fully qualified domain name of the intended recipient (Resource Server), or a domain name containing wild-card characters",
+      "description": "A JSON array of case-sensitive strings, each containing a StringOrURI value that identifies the recipients that the JWT is intended for",
       "type": "array",
       "items": {
         "type": "string"
@@ -38,12 +38,20 @@
     "x-nmos-api": {
       "description": "An object containing the access permissions of the user for the listed NMOS APIs",
       "type": "object",
+      "additionalProperties": false,
       "patternProperties": {
-        "[a-z_-]": {
+        "^[a-z_-]+$": {
           "type": "object",
           "minProperties": 1,
-          "patternProperties": {
-            "^read$|^write$": {
+          "properties": {
+            "read": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "write": {
               "type": "array",
               "items": {
                 "type": "string"
