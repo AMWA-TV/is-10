@@ -22,10 +22,7 @@
     },
     "token_type": {
       "description": "The type of the Token issued",
-      "type": "string",
-      "enum": [
-        "Bearer"
-      ]
+      "type": "string"
     }
   },
   "required": ["access_token", "expires_in", "token_type"]
