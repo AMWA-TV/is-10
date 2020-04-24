@@ -1,0 +1,22 @@
+{
+  "iss": "auth.example.com",
+  "sub": "username@example.com",
+  "aud": ["*.example.com"],
+  "iat": 1548779460,
+  "exp": 1548783060,
+  "scope": "registration query connection",
+  "client_id": "hopy0dNRPNTiGJDqPfqYwGmw",
+  "x-nmos-api": {
+    "registration": {
+      "read": ["*"]
+    },
+    "query": {
+      "read": ["*"],
+      "write": ["subscriptions/*"]
+    },
+    "connection": {
+      "read": ["*"],
+      "write": ["single/*"]
+    }
+  }
+}

@@ -37,8 +37,7 @@
       "description": "Array of OAuth 2.0 grant type strings that the client can use at the token endpoint",
       "type": "array",
       "items": {
-        "type": "string",
-        "enum": ["authorization_code", "implicit", "password", "client_credentials", "refresh_token", "urn:ietf:params:oauth:grant-type:jwt-bearer" ]
+        "type": "string"
       },
       "default": [ "authorization_code" ]
     },
@@ -46,8 +45,7 @@
       "description": "Array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint",
       "type": "array",
       "items": {
-        "type": "string",
-        "enum": [ "code", "token" ]
+        "type": "string"
       },
       "default": [ "code" ]
     },
@@ -99,5 +97,5 @@
       "type": "string"
     }
   },
-  "required": ["client_id", "client_secret_expires_at"]
+  "required": ["client_id"]
 }

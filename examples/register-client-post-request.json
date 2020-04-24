@@ -8,5 +8,6 @@
   "token_endpoint_auth_method": "client_secret_basic",
   "logo_uri": "https://client.example.org/logo.png",
   "jwks_uri": "https://client.example.org/my_public_keys.jwks",
-  "example_extension_parameter": "example_value"
+  "example_extension_parameter": "example_value",
+  "scope": "registration connection"
  }

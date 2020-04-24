@@ -23,15 +23,17 @@
             "type": "string"
           },
           "kid": {
-            "type": "string",
-            "pattern": "^(x-nmos-[0-9]+)$"
+            "type": "string"
           },
           "x5u": {
             "type": "string",
             "format": "uri"
           },
           "x5c": {
-            "type": "string"
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           },
           "x5t": {
             "type": "string"
