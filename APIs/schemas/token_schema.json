@@ -67,5 +67,5 @@
       }
     }
   },
-  "required": ["iss", "sub", "aud", "exp", "client_id"]
+  "required": ["iss", "sub", "aud", "exp"]
 }
