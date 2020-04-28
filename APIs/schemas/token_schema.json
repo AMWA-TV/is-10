@@ -41,6 +41,7 @@
       "description": "An object containing the access permissions of the user for the NMOS API identified by this attribute's name",
       "type": "object",
       "additionalProperties": false,
+      "minProperties": 1,
       "properties": {
         "read": {
           "type": "array",
