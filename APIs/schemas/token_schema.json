@@ -14,10 +14,17 @@
     },
     "aud": {
       "description": "A JSON array of case-sensitive strings, each containing a StringOrURI value that identifies the recipients that the JWT is intended for",
-      "type": "array",
-      "items": {
-        "type": "string"
-      }
+      "oneOf": [
+        {
+          "type": "array",
+          "items": {
+          "type": "string"
+          }
+        },
+        {
+          "type": "string"
+        }
+      ]
     },
     "exp": {
       "description": "The UTC time at which the token expires",
