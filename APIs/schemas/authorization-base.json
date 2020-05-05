@@ -11,9 +11,9 @@
       "token/",
       "authorize/",
       "revoke/"
-    ],
-    "minItems": 5,
-    "maxItems": 5,
-    "uniqueItems": true
-  }
+    ]
+  },
+  "minItems": 5,
+  "maxItems": 5,
+  "uniqueItems": true
 }
