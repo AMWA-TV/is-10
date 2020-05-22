@@ -38,6 +38,10 @@
       "description": "The client identifier of the OAuth 2.0 client that requested the token",
       "type": "string"
     },
+    "azp": {
+      "description": "The client identifier of the OAuth 2.0 client that requested the token",
+      "type": "string"
+    },
     "scope": {
       "description": "A string containing a space-separated list of scopes associated with the token",
       "type": "string"
