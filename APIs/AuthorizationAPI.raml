@@ -4,10 +4,10 @@
 # (c) AMWA 2020
 
 title: NMOS Authorization
-baseUri: https://api.example.com/{issuer_id_path}
+baseUri: https://api.example.com/{api_selector}
 baseUriParameters:
-  issuer_id_path:
-    description: The OPTIONAL path component of the issuer ID, in accordance with Section 3 of RFC 8414.
+  api_selector:
+    description: The OPTIONAL path component of the issuer identifier, in accordance with Section 3 of RFC 8414.
 mediaType: application/json
 documentation:
   - title: Overview
@@ -15,7 +15,7 @@ documentation:
       The NMOS Authorization API is exposed by an Authorization Server as a standard interface for requesting, revoking,
       and managing tokens and client registration.
 
-      This is an example implementation only. Authorization Servers may use alternative names for API paths provided
+      Authorization Servers may use alternative paths for the required endpoints, provided
       these are reflected in the Authorization Server Metadata.
   - title: Endpoint Discovery
     content: |
@@ -23,13 +23,13 @@ documentation:
       service name.
   - title: Registering Clients
     content: |
-      The `/register` endpoint should be protected by some appropriate authentication scheme to limit the
+      The registration endpoint should be protected by some appropriate authentication scheme to limit the
       availability of client-registration to valid clients. This is implementation-specific. This may be via the use of
       user credentials, public/private keys or an initial JWT token. This equally may be administered by an enterprise
-      system such as a Single-Sign-On system. Please see [RFC7591](https://tools.ietf.org/html/rfc7591).
+      system such as a Single-Sign-On system. Please see [RFC 7591](https://tools.ietf.org/html/rfc7591).
   - title: Use of HTTPS/TLS
     content: |
-      The Authorization Server MUST require the use of TLS when interacting with the /token and /authorize endpoints.
+      The Authorization Server MUST require the use of TLS when interacting with the token and authorization endpoints.
 
 securitySchemes:
   basic:
@@ -77,7 +77,6 @@ traits:
         required: false
         enum: [plain, S256]
         default: plain
-
 
 types:
   TokenAuthorizeRequest:
@@ -133,8 +132,12 @@ types:
           type: !include schemas/authorization-base.json
           example: !include ../examples/base-get-200.json
 
-/register:
+/{registration_endpoint_path}:
   displayName: Register Clients Resource
+  uriParameters:
+    registration_endpoint_path:
+      type: string
+      example: "register"
   get:
     description: UI / Web Form for registering details of OAuth 2.0 clients with the Auth Server.
     responses:
@@ -167,8 +170,12 @@ types:
       200:
       403:
 
-/token:
+/{token_endpoint_path}:
   displayName: Request Token Resource
+  uriParameters:
+    token_endpoint_path:
+      type: string
+      example: "token"
   post:
     description: |
       Method for requesting OAuth 2.0 Bearer Token (Authorization Code and Refresh Grants.)
@@ -211,8 +218,12 @@ types:
       200:
       403:
 
-/jwks:
+/{jwks_uri_path}:
   displayName: JSON Web Key Set Resource
+  uriParameters:
+    jwks_uri_path:
+      type: string
+      example: "jwks"
   get:
     description: |
       Request the contents of the JWKs endpoints.
@@ -223,8 +234,12 @@ types:
           type: !include schemas/jwks_response.json
           example: !include ../examples/jwks-get-200.json
 
-/authorize:
+/{authorization_endpoint_path}:
   displayName: Authorization Code Resource
+  uriParameters:
+    authorization_endpoint_path:
+      type: string
+      example: "authorize"
   get:
     description: The confirmation page enabling the resource owner to approve the client.
     is: ["AuthorizationCodeRequest"]
@@ -267,8 +282,12 @@ types:
       200:
       403:
 
-/revoke:
+/{revocation_endpoint_path}:
   displayName: Token Revocation Resource
+  uriParameters:
+    revocation_endpoint_path:
+      type: string
+      example: "revoke"
   post:
     description: Endpoint for revoking specific access/refresh tokens.
     securedBy: basic
