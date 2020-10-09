@@ -13,9 +13,10 @@ documentation:
       in order for an OAuth 2.0 Client to obtain the information needed to interact with an OAuth 2.0 Authorization Server.
 
 /.well-known/oauth-authorization-server:
-  displayName: Authorization Server Metadata when the issuer identifier has no path component
+  displayName: OAuth 2.0 Authorization Server Metadata
   get:
-    description: Identifies the location of OAuth 2.0 API endpoints as defined in RFC 8414.
+    description: Identifies the location of OAuth 2.0 API endpoints when the issuer identifier has no path component
+      as per Section 3 of [RFC 8414](https://tools.ietf.org/html/rfc8414).
     responses:
       200:
         body:
@@ -23,12 +24,13 @@ documentation:
           example: !include ../examples/auth-metadata-get-200.json
 
   /{api_selector}:
-    displayName: Authorization Server Metadata when the issuer identifier contains a path component
+    displayName: OAuth 2.0 Authorization Server Metadata
     uriParameters:
       api_selector:
         description: The path component of the issuer identifier, in accordance with Section 3 of RFC 8414.
     get:
-      description: Identifies the location of OAuth 2.0 API endpoints as defined in RFC 8414.
+      description: Identifies the location of OAuth 2.0 API endpoints when the issuer identifier contains a path component
+      as per Section 3 of [RFC 8414](https://tools.ietf.org/html/rfc8414).
       responses:
         200:
           body:
