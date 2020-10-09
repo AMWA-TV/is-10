@@ -15,7 +15,8 @@ documentation:
 /.well-known/oauth-authorization-server:
   displayName: OAuth 2.0 Authorization Server Metadata
   get:
-    description: Identifies the location of OAuth 2.0 API endpoints when the issuer identifier has no path component
+    description: |
+      Identifies the location of OAuth 2.0 API endpoints when the issuer identifier has no path component
       as per Section 3 of [RFC 8414](https://tools.ietf.org/html/rfc8414).
     responses:
       200:
@@ -29,8 +30,9 @@ documentation:
       api_selector:
         description: The path component of the issuer identifier, in accordance with Section 3 of RFC 8414.
     get:
-      description: Identifies the location of OAuth 2.0 API endpoints when the issuer identifier contains a path component
-      as per Section 3 of [RFC 8414](https://tools.ietf.org/html/rfc8414).
+      description: |
+        Identifies the location of OAuth 2.0 API endpoints when the issuer identifier contains a path component
+        as per Section 3 of [RFC 8414](https://tools.ietf.org/html/rfc8414).
       responses:
         200:
           body:
