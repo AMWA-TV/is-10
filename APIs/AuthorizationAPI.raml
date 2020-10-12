@@ -4,10 +4,7 @@
 # (c) AMWA 2020
 
 title: NMOS Authorization
-baseUri: https://api.example.com/{api_selector}
-baseUriParameters:
-  api_selector:
-    description: The OPTIONAL path component of the issuer identifier, as per Section 3 of [RFC 8414](https://tools.ietf.org/html/rfc8414).
+baseUri: https://api.example.com
 mediaType: application/json
 documentation:
   - title: Overview
@@ -15,11 +12,12 @@ documentation:
       The NMOS Authorization API is exposed by an Authorization Server as a standard interface for requesting, revoking,
       and managing tokens and client registration.
 
-      Authorization Servers may use alternative paths for the required endpoints, provided
-      these are reflected in the Authorization Server Metadata.
+      Authorization Servers may use alternative paths for the required endpoints, provided these are reflected in the
+      Authorization Server Metadata. The endpoints may share a common base path that is the path component of the
+      issuer identifier or **api_selector**, for example 'x-nmos/auth/{api version}', but this is not mandatory.
   - title: Endpoint Discovery
     content: |
-      The Authorization Server URL is discoverable using unicast and/or multicast DNS using the '_nmos-auth._tcp'
+      The Authorization Server URL is discoverable using unicast and/or multicast DNS using the '\_nmos-auth.\_tcp'
       service name.
   - title: Registering Clients
     content: |
@@ -122,20 +120,13 @@ types:
         required: true
         enum: [ access_token, refresh_token ]
 
-/:
-  displayName: Base
-  get:
-    description: List of endpoints available from this API.
-    responses:
-      200:
-        body:
-          type: !include schemas/authorization-base.json
-          example: !include ../examples/base-get-200.json
-
 /{registration_endpoint_path}:
   displayName: OAuth 2.0 Dynamic Client Registration endpoint
   uriParameters:
     registration_endpoint_path:
+      description: |
+        This path is defined by the **registration_endpoint** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
       type: string
       example: "register"
   get:
@@ -150,7 +141,7 @@ types:
       Resource for registering clients with the authorization server.
       See [RFC 7591](https://tools.ietf.org/html/rfc7591).
 
-      **Note** - Request examples may render as JSON objects, but should be passed in as "application/x-www-form-urlencoded"
+      **Note**: Request examples may be rendered as JSON objects, but should be passed in as "application/x-www-form-urlencoded"
       data types, in accordance with [RFC 6749](https://tools.ietf.org/html/rfc6749).
     body:
         type: !include schemas/register_client_request.json
@@ -175,15 +166,18 @@ types:
   displayName: OAuth 2.0 Token endpoint
   uriParameters:
     token_endpoint_path:
+      description: |
+        This path is defined by the **token_endpoint** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
       type: string
       example: "token"
   post:
     description: |
       Method for requesting OAuth 2.0 Bearer Token (Authorization Code and Refresh Grants).
 
-      **Note** - The data flow is dependant on the chosen grant type (e.g. authorization_code, refresh grant, etc.)
+      **Note**: The data flow is dependant on the chosen grant type (e.g. authorization_code, refresh grant, etc.)
 
-      **Note** - Request examples may render as JSON objects, but should be passed in as the `application/x-www-form-urlencoded`
+      **Note**: Request examples may render as JSON objects, but should be passed in as the `application/x-www-form-urlencoded`
       MIME type, in accordance with [RFC 6749](https://tools.ietf.org/html/rfc6749).
     securedBy: [ basic ]
     is: ["OAuthBasic"]
@@ -223,6 +217,9 @@ types:
   displayName: JSON Web Key Set endpoint
   uriParameters:
     jwks_uri_path:
+      description: |
+        This path is defined by the **jwks_uri** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
       type: string
       example: "jwks"
   get:
@@ -239,6 +236,9 @@ types:
   displayName: OAuth 2.0 Authorization endpoint
   uriParameters:
     authorization_endpoint_path:
+      description: |
+        This path is defined by the **authorization_endpoint** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
       type: string
       example: "authorize"
   get:
@@ -263,7 +263,7 @@ types:
           description: |
             Boolean comfirmation of Resource Owner authorization.
 
-            **Note** This is merely an example of one mechanism for obtaining the
+            **Note**: This is merely an example of one mechanism for obtaining the
             resource owner's approval. This is not covered in an RFC and is implementation-specific.
           type: boolean
           required: true
@@ -289,6 +289,9 @@ types:
   displayName: OAuth 2.0 Token Revocation endpoint
   uriParameters:
     revocation_endpoint_path:
+      description: |
+        This path is defined by the **revocation_endpoint** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
       type: string
       example: "revoke"
   post:
