@@ -27,5 +27,5 @@
   "revocation_endpoint":
     "https://server.example.com/v1.0/revoke",
   "code_challenge_methods_supported":
-    ["S256"]
+    ["plain", "S256"]
  }
