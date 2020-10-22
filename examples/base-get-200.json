@@ -1,7 +1,0 @@
-[
-  "jwks/",
-  "register/",
-  "token/",
-  "authorize/",
-  "revoke/"
-]
