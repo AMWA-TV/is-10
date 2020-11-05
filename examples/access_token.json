@@ -1,5 +1,5 @@
 {
-  "iss": "auth.example.com",
+  "iss": "https://server.example.com/v1.0",
   "sub": "username@example.com",
   "aud": ["*.example.com"],
   "iat": 1548779460,
