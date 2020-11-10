@@ -74,7 +74,6 @@
     "jwks_uri",
     "registration_endpoint",
     "response_types_supported",
-    "revocation_endpoint",
     "code_challenge_methods_supported"
   ]
 }
