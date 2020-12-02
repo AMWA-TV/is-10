@@ -9,7 +9,7 @@
       "type": "string"
     },
     "expires_in": {
-      "description": "The lifetime in seconds of the access token",
+      "description": "The lifetime in seconds of the Access Token",
       "type": "integer"
     },
     "refresh_token": {

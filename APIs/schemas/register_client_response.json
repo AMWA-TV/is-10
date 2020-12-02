@@ -85,7 +85,10 @@
     },
     "jwks": {
       "description": "Client's JSON Web Key Set document value, which contains the client's public keys",
-      "type": "string"
+      "type": "object",
+      "allOf": [
+        {"$ref": "jwks_schema.json"}
+      ]
     },
     "software_id": {
       "description": "A unique identifier string (e.g. a UUID) assigned by the client developer or software publisher",
