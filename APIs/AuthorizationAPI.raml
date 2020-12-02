@@ -35,6 +35,11 @@ securitySchemes:
     displayName: Basic Authentication
     description: |
       This API supports Basic Authentication using client ID and client secret as username and password credentials respectively.
+  private:
+    type: JSON Web Token Authentication
+    displayName: JSON Web Token Authentication
+    description: |
+      This API supports authentication using a JSON Web Token, signed by a private key which the Authorization Server holds the corresponding public key for.
 
 traits:
   OAuthBasic:
@@ -42,10 +47,22 @@ traits:
     usage: Applied in accordance with RFC 6749
     headers:
       Authorization:
-        displayName: OAuth 2.0 Basic Authorization
+        displayName: OAuth 2.0 Client Secret Basic Authentication
         description: Colon-seperated, base-64 encoded string, of Client ID and Client Secret
         type: string
         required: true
+  OAuthPrivate:
+    description: Authentication using JSON Web Token
+    usage: Applied in accordance with RFC 7523
+    QueryParameters:
+      client_assertion_type:
+        description: The identifier for a Bearer JWT
+        required: true
+        example: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+      client_assertion:
+        description: The contents of the JSON Web Token used for authentication
+        required: true
+        example: eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0
   AuthorizationCodeRequest:
     queryParameters:
       response_type:
@@ -179,8 +196,8 @@ types:
 
       **Note**: Request examples may be rendered as JSON objects, but should be passed in as "application/x-www-form-urlencoded"
       MIME type, in accordance with [RFC 6749](https://tools.ietf.org/html/rfc6749).
-    securedBy: [ basic ]
-    is: ["OAuthBasic"]
+    securedBy: [ basic, private ]
+    is: ["OAuthBasic", "OAuthPrivate"]
     body:
       application/x-www-form-urlencoded:
         type: TokenAuthorizeRequest | TokenRefreshRequest
@@ -298,8 +315,8 @@ types:
     description: |
       Endpoint for revoking specific access/refresh tokens.
       See [RFC 7009](https://tools.ietf.org/html/rfc7009).
-    securedBy: basic
-    is: ["OAuthBasic"]
+    securedBy: [ basic, private ]
+    is: ["OAuthBasic", "OAuthPrivate"]
     body:
       application/x-www-form-urlencoded:
         type: RevokeRequest

@@ -13,8 +13,7 @@
     },
     "token_endpoint_auth_method": {
       "description": "String indicator of the requested authentication method for the token endpoint",
-      "type": "string",
-      "enum": ["client_secret_post", "client_secret_basic", "none"]
+      "type": "string"
     },
     "grant_types": {
       "description": "Array of OAuth 2.0 grant type strings that the client can use at the token endpoint",
