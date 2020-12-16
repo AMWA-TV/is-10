@@ -19,12 +19,6 @@ documentation:
     content: |
       The Authorization Server URL is discoverable using unicast and/or multicast DNS using the '\_nmos-auth.\_tcp'
       service name.
-  - title: Registering Clients
-    content: |
-      The registration endpoint should be protected by some appropriate authentication scheme to limit the
-      availability of client-registration to valid clients. This is implementation-specific. This may be via the use of
-      user credentials, public/private keys or an initial JWT token. This equally may be administered by an enterprise
-      system such as a Single-Sign-On system. Please see [RFC 7591](https://tools.ietf.org/html/rfc7591).
   - title: Use of HTTPS/TLS
     content: |
       The Authorization Server MUST require the use of TLS when interacting with the token and authorization endpoints.
@@ -62,7 +56,7 @@ traits:
       client_assertion:
         description: The contents of the JSON Web Token used for authentication
         required: true
-        example: eyJhbGciOiJFUzI1NiIsImtpZCI6IjE2In0
+        example: eyJhbGciOiJSUzI1NiIsInR5cCI....
   AuthorizationCodeRequest:
     queryParameters:
       response_type:
@@ -116,13 +110,31 @@ types:
         description: Client-generated, high-entropy cryptographic random STRING with a minimum length of 43 characters and a maximum length of 128 characters
         type: string
         required: false
+  TokenCredentialsRequest:
+    properties:
+      grant_type:
+        description: The OAuth 2.0 grant type of the request
+        type: string
+        required: true
+      client_id:
+        description: The identifier of the client authenticating
+        type: string
+        required: true
+      client_assertion_type:
+        description: The identifier for a Bearer JWT
+        type: string
+        required: false
+      client_assertion:
+        description: The contents of the JSON Web Token used for authentication
+        type: string
+        required: false
   TokenRefreshRequest:
     properties:
         grant_type:
           description: MUST be set to "refresh_token"
           required: true
         refresh_token:
-          description: The refresh token issued to the client inside the bearer token
+          description: The Refresh Token issued to the client inside the Bearer Token
           required: true
         scope:
           description: The scope of the access request
@@ -146,13 +158,6 @@ types:
         [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
       type: string
       example: "register"
-  get:
-    description: UI / Web Form for registering details of OAuth 2.0 clients with the Authorization Server.
-    responses:
-      200:
-        body:
-          text/html:
-            type: file
   post:
     description: |
       Resource for registering clients with the authorization server.
@@ -190,9 +195,9 @@ types:
       example: "token"
   post:
     description: |
-      Method for requesting OAuth 2.0 Bearer Token (Authorization Code, Client Credentials and Refresh Grants).
+      Method for requesting OAuth 2.0 Bearer Token (Authorization Code, Client Credentials and Refresh Token grants).
 
-      **Note**: The data flow is dependent on the chosen grant type (e.g. authorization_code, refresh grant, etc.)
+      **Note**: The data flow is dependent on the chosen grant type (e.g. authorization_code, refresh_token, etc.)
 
       **Note**: Request examples may be rendered as JSON objects, but should be passed in as "application/x-www-form-urlencoded"
       MIME type, in accordance with [RFC 6749](https://tools.ietf.org/html/rfc6749).
@@ -200,20 +205,25 @@ types:
     is: ["OAuthBasic", "OAuthPrivate"]
     body:
       application/x-www-form-urlencoded:
-        type: TokenAuthorizeRequest | TokenRefreshRequest
+        type: TokenAuthorizeRequest | TokenCredentialsRequest | TokenRefreshRequest
         examples:
           AuthCodeGrant:
             grant_type: authorization_code
             code: SplxlOBeZQQYbYS6WxSbIA
             redirect_uri: "http://client.example.com/"
             client_id: ttwCD9hb4OckmcGDnmC3J3Jr
+          ClientCredentialsGrant:
+            grant_type: client_credentials
+            client_id: c1068569-80c1-48cf-982e-30c3f930dfe3
+            client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+            client_assertion: eyJhbGciOiJSUzI1NiIsInR5cCI....
           RefreshTokenGrant:
             grant_type: refresh_token
             refresh_token: tGzv3JOkF0XG5Qx2TlKWIA
     responses:
       200:
-        description: Successful request to obtain a Bearer Token, consisting of the access token and optionally
-          a refresh token to be used to request further access tokens.
+        description: Successful request to obtain a Bearer Token, consisting of the Access Token and optionally
+          a Refresh Token to be used to request further Access Tokens.
         body:
           type: !include schemas/token_response.json
           example: !include ../examples/token-post-200.json
@@ -313,7 +323,7 @@ types:
       example: "revoke"
   post:
     description: |
-      Endpoint for revoking specific access/refresh tokens.
+      Endpoint for revoking specific Access/Refresh Tokens.
       See [RFC 7009](https://tools.ietf.org/html/rfc7009).
     securedBy: [ basic, private ]
     is: ["OAuthBasic", "OAuthPrivate"]
