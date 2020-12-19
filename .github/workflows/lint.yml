@@ -4,11 +4,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
       - name: Use Node.js
         uses: actions/setup-node@v1
         with:
-          node-version: '8.x'
-      - run: make distclean
-      - run: make build-tools
-      - run: make lint
+          node-version: '12.x'
+      - name: Setup
+        run: make distclean build-tools
+      - name: Lint
+        run: make lint
