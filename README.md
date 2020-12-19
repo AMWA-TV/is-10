@@ -1,5 +1,8 @@
 # \[Work In Progress\] AMWA IS-10 NMOS Authorization Specification
 
+[![Lint Status](https://github.com/AMWA-TV/nmos-authorization/workflows/Lint/badge.svg)](https://github.com/AMWA-TV/nmos-authorization/actions?query=workflow%3ALint)
+[![Render Status](https://github.com/AMWA-TV/nmos-authorization/workflows/Render/badge.svg)](https://github.com/AMWA-TV/nmos-authorization/actions?query=workflow%3ARender)
+
 AMWA IS-10 specifies an API for the authorization of other NMOS APIs. 
 
 ## Getting started
