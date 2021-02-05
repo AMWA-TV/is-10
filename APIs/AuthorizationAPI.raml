@@ -167,12 +167,16 @@ types:
       data types, in accordance with [RFC 6749](https://tools.ietf.org/html/rfc6749).
     body:
         type: !include schemas/register_client_request.json
-        example: !include ../examples/register-client-post-request.json
+        examples:
+          AuthCodeGrant: !include ../examples/register-authorization-code-grant-client-post-request.json
+          ClientCredentialsGrant: !include ../examples/register-client-credentials-grant-client-post-request.json
     responses:
       201:
         body:
           type: !include schemas/register_client_response.json
-          example: !include ../examples/register-client-post-201.json
+          examples:
+            AuthCodeGrant: !include ../examples/register-authorization-code-grant-client-post-201.json
+            ClientCredentialsGrant: !include ../examples/register-client-credentials-grant-client-post-201.json
       400:
         description: Unsuccessful client registration (in line with Section 3.2.2. of RFC 7591)
         body:
