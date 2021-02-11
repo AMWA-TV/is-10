@@ -2,8 +2,8 @@
   "client_name": "My Example Client",
   "grant_types": ["authorization_code", "refresh_token"],
   "redirect_uris": [
-    "https://client.example.org/callback",
-    "https://client.example.org/callback2"
+    "https://client.example.com/callback",
+    "https://client.example.com/callback2"
   ],
   "response_types": ["code"],
   "scope": "query connection",

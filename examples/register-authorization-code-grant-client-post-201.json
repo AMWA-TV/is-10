@@ -4,8 +4,8 @@
   "client_secret": "cf136dc3c1fc93f31185e5885805d",
   "client_secret_expires_at": 2893276800,
   "redirect_uris": [
-    "https://client.example.org/callback",
-    "https://client.example.org/callback2"
+    "https://client.example.com/callback",
+    "https://client.example.com/callback2"
   ],
   "scope": "query connection",
   "token_endpoint_auth_method": "client_secret_basic"
