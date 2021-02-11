@@ -80,5 +80,5 @@
       "type": "string"
     }
   },
-  "required": ["redirect_uris", "client_name" ]
+  "required": [ "client_name" ]
 }
