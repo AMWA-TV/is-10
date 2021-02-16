@@ -3,7 +3,7 @@
 [![Lint Status](https://github.com/AMWA-TV/nmos-authorization/workflows/Lint/badge.svg)](https://github.com/AMWA-TV/nmos-authorization/actions?query=workflow%3ALint)
 [![Render Status](https://github.com/AMWA-TV/nmos-authorization/workflows/Render/badge.svg)](https://github.com/AMWA-TV/nmos-authorization/actions?query=workflow%3ARender)
 
-[//]: # "INTRO-START"
+<!-- INTRO-START -->
 
 ### What does it do?
 
@@ -21,7 +21,7 @@
 - Based on JSON Web Tokens and OAuth 2.0
 - Encryption is a prerequisite (see BCP-003-01)
 
-[//]: # "INTRO-END"
+<!-- INTRO-END -->
 
 ## Getting started
 
