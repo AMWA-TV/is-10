@@ -5,7 +5,7 @@
   "description": "Displays the Authorization server metadata",
   "properties": {
     "issuer": {
-      "description": "The authorization server's issuer identifier, which is a URL that uses the 'https' scheme and has no query or fragment components.  Authorization server metadata is published at a location that is '.well-known' according to RFC 5785 [RFC5785] derived from this issuer identifier, as described in Section 3. The issuer identifier is used to prevent authorization server mix-up attacks, as described in 'OAuth 2.0 Mix-Up Mitigation' [MIX-UP].",
+      "description": "The authorization server's issuer identifier, which is a URL that uses the 'https' scheme and has no query or fragment components.  Authorization server metadata is published at a location that is '.well-known' according to RFC 5785 [RFC5785] derived from this issuer identifier, as described in Section 3. The issuer identifier is used to prevent authorization server mix-up attacks.",
       "format": "uri",
       "type": "string"
     },
