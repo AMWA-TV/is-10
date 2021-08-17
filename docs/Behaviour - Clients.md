@@ -115,7 +115,7 @@ susceptibility to Cross-Site-Scripting attacks, and instead rely on in-memory st
 
 ## Requesting a Token
 
-Refer to [Token Requests](4.3.%20Behaviour%20-%20Token%20Requests.md) for information on supported OAuth 2.0 grants,
+Refer to [Token Requests](Behaviour%20-%20Token%20Requests.md) for information on supported OAuth 2.0 grants,
 requesting Access Tokens and refreshing and revoking tokens.
 
 ## Refreshing a Token
@@ -134,7 +134,7 @@ authorization request process is required.
 When accessing protected resources clients MUST include the Access Token in the request using the Authorization
 Request Header Field method described in Section 2.1 of [RFC 6750][RFC-6750]. Clients MUST NOT use any of the other
 methods specified in Section 2.0 of [RFC 6750][RFC-6750] when making requests via HTTP/S, except for the case noted in
-[Resource Servers - Operation with WebSocket](4.5.%20Behaviour%20-%20Resource%20Servers.md#operation-with-websocket).
+[Resource Servers - Operation with WebSocket](Behaviour%20-%20Resource%20Servers.md#operation-with-websocket).
 
 Access Tokens signed with a JSON Web Signature (JWS) are base64-url encoded and so MUST NOT be base64-url
 encoded again before being sent in a request.
@@ -142,7 +142,7 @@ encoded again before being sent in a request.
 Clients MUST be capable of handling early revocation of tokens, which will be signalled by Resource Servers using HTTP
 4xx error codes.
 Further details on when Resource Servers will respond with particular codes is covered in
-[Resource Servers - Accessing Protected Resources](4.5.%20Behaviour%20-%20Resource%20Servers.md#accessing-protected-resources).
+[Resource Servers - Accessing Protected Resources](Behaviour%20-%20Resource%20Servers.md#accessing-protected-resources).
 
 [RFC-2617]: https://tools.ietf.org/html/rfc2617 "HTTP Authentication: Basic and Digest Access Authentication"
 

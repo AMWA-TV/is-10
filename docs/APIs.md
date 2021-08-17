@@ -8,7 +8,7 @@ it:
 
 The Authorization API specified above is one valid implementation, but does not define how every Authorization Server
 will present itself. Any OAuth 2.0 compatible Authorization Server which implements the RFCs noted in the
-[Overview](1.0.%20Overview.md) is compatible with this authorization mechanism.
+[Overview](Overview.md) is compatible with this authorization mechanism.
 
 ## API Specifications
 
@@ -36,7 +36,7 @@ https://<ip address or hostname>:<port>/x-nmos/auth/<api version>/
 ```
 
 Any path component of the issuer identifier (omitting the initial `/` and any trailing `/`) is advertised via the DNS-SD
-`api_selector` TXT record, as described in [Discovery](3.0.%20Discovery.md). In this example, it would be
+`api_selector` TXT record, as described in [Discovery](Discovery.md). In this example, it would be
 `x-nmos/auth/<api version>`.
 
 The issuer identifier MAY be used as the base of the Authorization API, but this is not mandatory.
@@ -144,7 +144,7 @@ Resource Servers MUST return error codes and responses in line with Section 3 of
 Clients MUST be capable of handling such responses.
 
 Further details on when Resource Servers will respond with particular codes is covered in
-[Resource Servers - Accessing Protected Resources](4.5.%20Behaviour%20-%20Resource%20Servers.md#accessing-protected-resources).
+[Resource Servers - Accessing Protected Resources](Behaviour%20-%20Resource%20Servers.md#accessing-protected-resources).
 
 Where the RAML specification of an API specifies explicit response codes it is expected that a client will handle these
 cases in a particular way. As explicit handling of every possible HTTP response code is not expected, clients must
