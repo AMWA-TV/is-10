@@ -85,7 +85,7 @@ this client deregistration occurs is beyond the scope of this specification.
 
 ## Responding to Token Requests
 
-Refer to [Token Requests](4.3.%20Behaviour%20-%20Token%20Requests.md) for information on supported OAuth 2.0 grants,
+Refer to [Token Requests](Behaviour%20-%20Token%20Requests.md) for information on supported OAuth 2.0 grants,
 requesting Access Tokens and refreshing and revoking tokens.
 
 ## Audit Requirements

@@ -6,7 +6,7 @@ As is common with web APIs, over time changes will be made to support new use ca
 The NMOS APIs are no different, and have been designed to permit in-service upgrades across a facility which may be
 running large amounts of equipment with support for different versions of these specifications.
 
-API versioning is specified in the [APIs](2.0.%20APIs.md) documentation, with procedures for handling upgrades described
+API versioning is specified in the [APIs](APIs.md) documentation, with procedures for handling upgrades described
 below.
 
 ## Requirements for Authorization Servers and OAuth Clients

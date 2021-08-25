@@ -4,11 +4,11 @@ _(c) AMWA 2019, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
 IS-10 defines behaviour for:
 
--   [Authorization Servers](4.1.%20Behaviour%20-%20Authorization%20Servers.md)
--   [Clients](4.2.%20Behaviour%20-%20Clients.md)
--   [Token Requests](4.3.%20Behaviour%20-%20Token%20Requests.md)
--   [Access Tokens](4.4.%20Behaviour%20-%20Access%20Tokens.md)
--   [Resource Servers](4.5.%20Behaviour%20-%20Resource%20Servers.md)
+-   [Authorization Servers](Behaviour%20-%20Authorization%20Servers.md)
+-   [Clients](Behaviour%20-%20Clients.md)
+-   [Token Requests](Behaviour%20-%20Token%20Requests.md)
+-   [Access Tokens](Behaviour%20-%20Access%20Tokens.md)
+-   [Resource Servers](Behaviour%20-%20Resource%20Servers.md)
 
 
 ## Time Synchronization

@@ -47,7 +47,7 @@ as per Section 3 of [RFC 6750][RFC-6750].
 For example:
 *   A request without authentication or one including an expired Access Token will receive a 401 (Unauthorized) response.
 *   A request that is not permitted by the values of the `x-nmos-*` claims, as per the
-    [Access Tokens](4.4.%20Behaviour%20-%20Access%20Tokens.md) section, will receive a 403 (Forbidden) response.
+    [Access Tokens](Behaviour%20-%20Access%20Tokens.md) section, will receive a 403 (Forbidden) response.
 
 Resource Servers are strongly RECOMMENDED to avoid the use of HTTP Redirects on API endpoints which require
 Authorization. Responding directly to clients avoids redirection to an endpoint which might
@@ -81,7 +81,7 @@ The certificate containing the public key for verification is found at the publi
 Server that issued the token. This server is identified using the issuer (`iss`) claim within the token.
 
 The value of the claims within the payload of the JWT must also be validated, in line with the
-[Tokens](4.4.%20Behaviour%20-%20Access%20Tokens.md) section. The request MUST be rejected if:
+[Tokens](Behaviour%20-%20Access%20Tokens.md) section. The request MUST be rejected if:
 *   the `iat` claim is greater than the current UTC time.
 *   the `exp` claim is less than the current UTC time.
 *   the Resource Server does not identify itself with the `aud` claim
@@ -97,7 +97,7 @@ following rules MUST be followed when confirming a match.
 | `/x-nmos` | Always allow 'read' permission with no authorization checks. This includes implicit permission to this path with or without a trailing slash |
 | `/x-nmos/<api name>` | The token MUST include either an `x-nmos-*` claim matching the API name, a `scope` matching the API name or both in order to obtain 'read' permission. This includes implicit permission to this path with or without a trailing slash |
 | `/x-nmos/<api name>/<api version>` | The token MUST include either an `x-nmos-*` claim matching the API name, a `scope` matching the API name or both in order to obtain 'read' permission. This includes implicit permission to this path with or without a trailing slash |
-| `/x-nmos/<api name>/<api version>/<path>` | The token MUST include an `x-nmos-*` claim matching the API name and the path, in line with the method outlined in [Tokens](4.4.%20Behaviour%20-%20Access%20Tokens.md) |
+| `/x-nmos/<api name>/<api version>/<path>` | The token MUST include an `x-nmos-*` claim matching the API name and the path, in line with the method outlined in [Tokens](Behaviour%20-%20Access%20Tokens.md) |
 
 ## Interaction with other NMOS APIs
 

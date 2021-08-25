@@ -104,7 +104,7 @@ API (e.g. "registration", "query", etc.) to which the user is requesting access 
 `x-nmos-*` claims, detailed below, are populated.
 
 Presence of a `scope` matching an NMOS API grants implicit read only access to some API base paths as specified in
-[Resource Servers](4.5.%20Behaviour%20-%20Resource%20Servers.md).
+[Resource Servers](Behaviour%20-%20Resource%20Servers.md).
 
 ### nbf
 _Not before time_
@@ -126,7 +126,7 @@ One or more `x-nmos-*` claims SHOULD be included in the token. The claim name be
 identifier found in the URL for that given API (e.g. "registration", "query", etc.).
 
 Presence of an `x-nmos-*` claim matching an NMOS API grants implicit read only access to some API base paths as
-specified in [Resource Servers](4.5.%20Behaviour%20-%20Resource%20Servers.md).
+specified in [Resource Servers](Behaviour%20-%20Resource%20Servers.md).
 
 The value of the claim is a JSON object, indicating access permissions for the API. An omitted `x-nmos-*` object
 indicates that no access is permitted to the namespace-identified API beyond what may be granted by the presence of
