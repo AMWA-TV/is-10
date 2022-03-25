@@ -2,7 +2,7 @@
 
 _(c) AMWA 2019, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)_
 
-_See also the [NMOS Glossary](https://github.com/AMWA-TV/nmos/wiki/Glossary) for concepts regarding the [JT-NM
+_See also the [NMOS Glossary](https://specs.amwa.tv/nmos/branches/main/docs/Glossary.html) for concepts regarding the [JT-NM
 reference architecture](https://jt-nm.org/reference-architecture/), and definitions within RFCs._
 
 The below definitions are based on the [OAuth 2.0 spec][RFC-6749].
