@@ -22,7 +22,8 @@ Resource Servers SHOULD attempt to verify tokens against all keys presented at t
 endpoint. All valid JWK's SHOULD be tried until the token is verified or until no keys are left.
 
 Where a Resource Server has no matching public key for a given token, it SHOULD attempt to obtain the missing public key
-via the the token `iss` claim as specified in [RFC 8414][RFC-8414] section 3. In cases where the Resource Server needs
+from the Authorization Server's "jwks_uri" property, which is found in the server metadata. The server metadata can be obtained
+from a URI based on the token's issuer (`iss`) claim as specified in [RFC 8414][RFC-8414] section 3. In cases where the Resource Server needs
 to fetch a public key from a remote Authorization Server it MAY temporarily respond with an HTTP 503 code in order to
 avoid blocking the incoming authorized request. When a HTTP 503 code is used, the Resource Server SHOULD include an
 HTTP `Retry-After` header to indicate when the client may retry its request.
