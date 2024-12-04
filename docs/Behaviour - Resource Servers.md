@@ -19,7 +19,7 @@ If a Resource Server is unable to contact an Authorization Server, the Resource 
 public keys remain valid until it is able to re-establish a connection to an Authorization Server.
 
 Resource Servers SHOULD attempt to verify tokens against all keys presented at the Authorization Server's public key
-endpoint. All valid JWK's SHOULD be tried until the token is verified or until no keys are left.
+endpoint. All valid JWKs SHOULD be tried until the token is verified or until no keys are left.
 
 Where a Resource Server has no matching public key for a given token, it SHOULD attempt to obtain the missing public key
 from the Authorization Server's "jwks_uri" property, which is found in the server metadata. The server metadata can be obtained
