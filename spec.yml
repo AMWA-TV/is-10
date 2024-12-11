@@ -6,6 +6,6 @@ repo_name: is-10
 alt_repo_name: nmos-authorization
 repo_url: https://github.com/AMWA-TV/is-10
 releases:
-  - v1.0.0
+  - v1.0.1
 default_branch: v1.0.x
 show_in_index: true
