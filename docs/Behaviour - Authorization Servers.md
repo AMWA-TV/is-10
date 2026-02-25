@@ -99,7 +99,7 @@ the user who authorized the action. Logs MUST NOT contain sensitive information 
 
 [RFC-6749]: https://tools.ietf.org/html/rfc6749 "The OAuth 2.0 Authorization Framework"
 
-[RFC-7523]: https://tools.ietf.org/html/rfc7591 "JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants"
+[RFC-7523]: https://tools.ietf.org/html/rfc7523 "JSON Web Token (JWT) Profile for OAuth 2.0 Client Authentication and Authorization Grants"
 
 [RFC-7591]: https://tools.ietf.org/html/rfc7591 "OAuth 2.0 Dynamic Client Registration Protocol"
 
