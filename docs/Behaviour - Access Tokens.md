@@ -154,9 +154,7 @@ registered in the [AMWA NMOS Parameter Registers][AMWA NMOS Parameter Registers]
 permissions keys are only introduced alongside a new version of a given AMWA NMOS API in order to minimise the risk of
 incompatibility.
 
-The `value` corresponding to each permission key is a JSON array containing URL path specifiers that the user is
-permitted to perform the specific request against. The asterisk wildcard ('`*`') is permitted in the path
-specifiers.
+The `value` corresponding to each permission key is a JSON array containing path specifiers that the user is permitted to perform actions on. These could be URLs where requests are permitted or in the case of IS-12 and IS-14 the array contains resource role path specifiers as described in [BCP-003-02](https://specs.amwa.tv/bcp-003-02/). The asterisk wildcard ('`*`') is permitted in the path specifiers.
 
 A '`*`' wildcard can be used to replace zero or more characters (this is equivalent to the `.*` regex pattern). The
 wildcard may encompass multiple path segments, may be used multiple times, and may appear at any position in the path
