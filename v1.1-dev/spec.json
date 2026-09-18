@@ -1,0 +1,29 @@
+{
+  "amwa_id": "IS-10",
+  "url": "https://specs.amwa.tv/is-10",
+  "name": "Authorization",
+  "status": "AMWA Specification",
+  "repo_name": "is-10",
+  "alt_repo_name": "nmos-authorization",
+  "repo_url": "https://github.com/AMWA-TV/is-10",
+  "releases": [
+    "v1.0.1"
+  ],
+  "default_branch": "v1.0.x",
+  "show_in_index": true,
+  "intro": {
+    "what_does_it_do": [
+      "Allows an API server to accept or reject requests depending on what a client is authorized to do"
+    ],
+    "why_does_it_matter": [
+      "Security in the control plane is essential",
+      "Best practice is to limit what clients can do"
+    ],
+    "how_does_it_work": [
+      "Control client provides credentials and gets an access token",
+      "Sends token with API requests",
+      "Based on JSON Web Tokens and OAuth 2.0",
+      "Encryption is a prerequisite (see BCP-003-01)"
+    ]
+  }
+}
