@@ -1,0 +1,1820 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://specs.amwa.tv/new/is-10/v1.0.0/2.0.%20APIs/">
+      
+      
+        <link rel="prev" href="../1.0.%20Overview/">
+      
+      
+        <link rel="next" href="../APIs/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.62">
+    
+    
+      
+        <title>APIs - AMWA IS-10 NMOS Authorization Specification</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.ce62732f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/amwa-branding.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#apis" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="AMWA IS-10 NMOS Authorization Specification" class="md-header__button md-logo" aria-label="AMWA IS-10 NMOS Authorization Specification" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AMWA IS-10 NMOS Authorization Specification
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              APIs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/AMWA-TV/is-10" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/is-10
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="AMWA IS-10 NMOS Authorization Specification" class="md-nav__button md-logo" aria-label="AMWA IS-10 NMOS Authorization Specification" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    AMWA IS-10 NMOS Authorization Specification
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AMWA-TV/is-10" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/is-10
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AMWA IS-10 NMOS Authorization Specification
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1.0.%20Overview/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AMWA IS-10 NMOS Authorization Specification: Overview
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  APIs
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/AuthorizationAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AuthorizationAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/ServerMetadataAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ServerMetadataAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3.0.%20Discovery/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Discovery
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.0.%20Behaviour/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.1.%20Behaviour%20-%20Authorization%20Servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Authorization Servers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.2.%20Behaviour%20-%20Clients/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Clients
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.3.%20Behaviour%20-%20Token%20Requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Token Requests
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.4.%20Behaviour%20-%20Access%20Tokens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Access Tokens
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4.5.%20Behaviour%20-%20Resource%20Servers/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Behaviour: Resource Servers
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5.0.%20Definitions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Definitions
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6.0.%20Upgrade%20Path/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Upgrade Path
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <label class="md-nav__link" for="__nav_13" id="__nav_13_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Examples
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Examples
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/access_token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  access_token.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/auth-metadata-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  auth-metadata-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/auth-metadata-issuer-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  auth-metadata-issuer-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jwks-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  jwks-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-authorization-code-grant-client-post-201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-authorization-code-grant-client-post-201.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-authorization-code-grant-client-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-authorization-code-grant-client-post-request.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-client-credentials-grant-client-post-201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-client-credentials-grant-client-post-201.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-client-credentials-grant-client-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-client-credentials-grant-client-post-request.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-client-post-201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-client-post-201.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-client-post-400/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-client-post-400.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/token-post-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token-post-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/token-post-400/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token-post-400.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <label class="md-nav__link" for="__nav_14" id="__nav_14_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Images
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Images
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../images/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Editing Files
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <label class="md-nav__link" for="__nav_15" id="__nav_15_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Schemas
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Schemas
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  JSON Schemas
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/auth_metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  auth_metadata
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/jwks_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  jwks_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/jwks_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  jwks_schema
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/register_client_error_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register_client_error_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/register_client_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register_client_request
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/register_client_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register_client_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/token_error_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token_error_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/token_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/token_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token_schema
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-specifications" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Specifications
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-paths" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Paths
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Paths">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#server-metadata-endpoint" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Server Metadata Endpoint
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#authorization-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Authorization Endpoints
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-interaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Interaction
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Interaction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#authorization-code-grant-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Authorization Code Grant Flow
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client-credentials-grant-flow" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Client Credentials Grant Flow
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#api-validation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        API Validation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API Validation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#content-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Content Types
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cache-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Cache-Control
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#redirections" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Redirections
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#options-requests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        OPTIONS Requests
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-codes-responses" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Error Codes &amp; Responses
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+  
+
+
+<h1 id="apis">APIs</h1>
+<p><em>(c) AMWA 2019, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)</em></p>
+<p>This document covers common aspects of the following API, and how other AMWA NMOS APIs and their clients interact with
+it:
+*   <a href="../../APIs/AuthorizationAPI.raml">Authorization API</a></p>
+<p>The Authorization API specified above is one valid implementation, but does not define how every Authorization Server
+will present itself. Any OAuth 2.0 compatible Authorization Server which implements the RFCs noted in the
+<a href="../1.0.%20Overview/">Overview</a> is compatible with this authorization mechanism.</p>
+<h2 id="api-specifications">API Specifications</h2>
+<p>The Authorization API is specified using:
+*   The following sub-sections describing the API and its associated IETF RFCs.
+*   Example <a href="http://raml.org/">RAML</a> documents and <a href="http://tools.ietf.org/html/draft-zyp-json-schema-04">JSON schemas</a>
+in the <a href="../../APIs/">APIs</a> folder.
+*   Examples of JSON format output are provided in the <a href="../../examples/">examples</a> folder.</p>
+<p>The Authorization Server SHALL present an instance of the NMOS <a href="../../APIs/AuthorizationAPI.raml">Authorization API</a>. The
+API MAY use alternative paths for all endpoints other than those beginning with <code>.well-known</code>, provided the alternative
+paths are correctly signalled via OAuth 2.0 Authorization Server Metadata <a href="https://tools.ietf.org/html/rfc8414" title="OAuth 2.0 Authorization Server Metadata">RFC 8414</a>.</p>
+<p>The Authorization Server and client authentication methods MUST otherwise be implemented as per the OAuth 2.0
+Authorization Framework <a href="https://tools.ietf.org/html/rfc6749" title="The OAuth 2.0 Authorization Framework">RFC 6749</a>. All Access Tokens produced by the Authorization Server MUST be Bearer
+Tokens using the JSON Web Token (JWT) format as per <a href="https://tools.ietf.org/html/rfc7519" title="JSON Web Token (JWT)">RFC 7519</a>.</p>
+<h2 id="api-paths">API Paths</h2>
+<p>The Authorization Server MUST have have an "issuer identifier" URL, as defined by <a href="https://tools.ietf.org/html/rfc8414" title="OAuth 2.0 Authorization Server Metadata">RFC 8414</a>.
+This MAY follow the path structure defined by other NMOS specifications, but this is not mandatory:</p>
+<div class="highlight"><pre><span></span><code>https://&lt;ip address or hostname&gt;:&lt;port&gt;/x-nmos/auth/&lt;api version&gt;/
+</code></pre></div>
+<p>Any path component of the issuer identifier (omitting the initial <code>/</code> and any trailing <code>/</code>) is advertised via the DNS-SD
+<code>api_selector</code> TXT record, as described in <a href="../3.0.%20Discovery/">Discovery</a>. In this example, it would be
+<code>x-nmos/auth/&lt;api version&gt;</code>.</p>
+<p>The issuer identifier MAY be used as the base of the Authorization API, but this is not mandatory.
+The server identifies the paths for its Authorization API endpoints as follows.  </p>
+<h3 id="server-metadata-endpoint">Server Metadata Endpoint</h3>
+<p>The Authorization Server MUST implement an endpoint at the following path. This path immediately follows the port and
+MUST NOT be prefixed by any additional path, including but not limited to 'x-nmos'. This endpoint cannot follow the
+usual format of NMOS APIs since it MUST follow the syntax and semantics of ".well-known" endpoints defined in
+<a href="https://tools.ietf.org/html/rfc5785" title="Defining Well-Known Uniform Resource Identifiers (URIs)">RFC 5785</a>.</p>
+<ul>
+<li><strong>/.well-known/oauth-authorization-server[/<api_selector>]</strong> - This path MUST return a response matching the
+requirements of OAuth 2.0 Authorization Server Metadata <a href="https://tools.ietf.org/html/rfc8414" title="OAuth 2.0 Authorization Server Metadata">RFC 8414</a>. This MUST include the optional
+<code>jwks_uri</code> and <code>registration_endpoint</code> parameters. The <code>revocation_endpoint</code> SHOULD be supported.</li>
+</ul>
+<h3 id="authorization-endpoints">Authorization Endpoints</h3>
+<p>The following endpoints MUST be implemented by an Authorization Server at the paths signaled in the Authorization
+Server Metadata.</p>
+<ul>
+<li>The <code>authorization_endpoint</code>, for example at <strong>/authorize</strong> - Used for requesting an authorization code when
+    using the authorization code grant, as defined by <a href="https://tools.ietf.org/html/rfc6749" title="The OAuth 2.0 Authorization Framework">RFC 6749</a>.</li>
+<li>The <code>token_endpoint</code>, for example at <strong>/token</strong> - Used for requesting a token when using any of the chosen grant
+    types, as defined by <a href="https://tools.ietf.org/html/rfc6749" title="The OAuth 2.0 Authorization Framework">RFC 6749</a>.</li>
+<li>When included in the <a href="#server-metadata-endpoint">Server Metadata</a>, the <code>revocation_endpoint</code>, for example at
+    <strong>/revoke</strong> - Used as the revocation endpoint for revoking currently active access tokens or refresh tokens,
+    as defined by <a href="https://tools.ietf.org/html/rfc7009" title="OAuth 2.0 Token Revocation">RFC 7009</a>.</li>
+<li>The <code>jwks_uri</code> endpoint, for example at <strong>/jwks</strong> - Used to expose a JSON Web Key Set <a href="https://tools.ietf.org/html/rfc7517" title="JSON Web Key (JWK)">RFC 7517</a>
+    containing the public key that corresponds with the private key used to sign the Access Tokens.</li>
+<li>The <code>registration_endpoint</code>, for example at <strong>/register</strong> - Used for the manual or dynamic registration of an
+    OAuth 2.0 client with the Authorization Server in line with <a href="https://tools.ietf.org/html/rfc7591" title="OAuth 2.0 Dynamic Client Registration Protocol">RFC 7591</a>.</li>
+</ul>
+<h2 id="api-interaction">API Interaction</h2>
+<p>The following diagrams highlight the different sequences of interactions that occur when accessing a Protected
+Resource depending on the OAuth 2.0 grant type used.</p>
+<h3 id="authorization-code-grant-flow">Authorization Code Grant Flow</h3>
+<p>This flow can be used for any NMOS interaction.</p>
+<p><img alt="Authorization Flow" src="../images/authorization_flow.png" /></p>
+<h3 id="client-credentials-grant-flow">Client Credentials Grant Flow</h3>
+<p>This flow can only be used in specific interactions. Refer to <a href="https://specs.amwa.tv/bcp-003-02/" title="Authorization in NMOS Systems">BCP-003-02</a> for permitted uses of
+this grant.</p>
+<p><img alt="Client Credentials Flow" src="../images/client_credentials_flow.png" /></p>
+<h2 id="api-validation">API Validation</h2>
+<p>JSON schemas are included with the RAML API definitions. These include validation for values used within the APIs.
+These are based on the schemas defined in the <a href="https://tools.ietf.org/html/rfc6749" title="The OAuth 2.0 Authorization Framework">OAuth 2.0 Specification</a>. It is RECOMMENDED that implementers
+of the Authorization API use these JSON schemas as part of a validation stage when passing client registration data
+to, or receiving client and token data from, the Authorization Server.</p>
+<h3 id="content-types">Content Types</h3>
+<p>All API endpoints returning a JSON response MUST provide a JSON representation signalled via <code>Content-Type:
+application/json</code> headers. This SHOULD be the default content type in the absence of any requested alternative by
+clients. Other content types (such as HTML) are permitted if they are explicitly requested via Accept headers.</p>
+<p>For HTTP redirections, such as when using the Authorization Code grant, a Content-Type of <code>text/html</code> MAY also be
+returned.</p>
+<h3 id="cache-control">Cache-Control</h3>
+<p>The authorization server MUST include the HTTP "Cache-Control" response header field with a value of "no-store" in any
+response containing tokens, credentials, or other sensitive information, as well as the "Pragma" response header field
+with a value of "no-cache", in line with <a href="https://tools.ietf.org/html/rfc6749" title="The OAuth 2.0 Authorization Framework">RFC 6749</a>.</p>
+<h3 id="redirections">Redirections</h3>
+<p>Some of the standard grants used within the OAuth 2.0 framework make use of user-agent redirection (e.g. via a
+web-browser) in order to gain user authorization. The primary grant that makes use of redirection is the Authorization
+Code grant. As such, clients performing requests using this method MUST correctly handle a 302 response (Found) as
+stated in Section 4.1.2 of <a href="https://tools.ietf.org/html/rfc6749" title="The OAuth 2.0 Authorization Framework">RFC 6749</a> following the guidelines given in <a href="https://tools.ietf.org/html/rfc7231#section-6.4.3" title="Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content">RFC 7231</a>.</p>
+<p>The Authorization Server MUST NOT use the 307 HTTP status code for redirection as per Section 4.10. of the
+<a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-security-topics/" title="OAuth 2.0 Security Best Current Practice 13">OAuth 2.0 Best Common Practice</a> draft.</p>
+<h3 id="options-requests">OPTIONS Requests</h3>
+<p>OAuth 2.0 Clients MUST support pre-flight OPTIONS requests when performing all HTTP requests, including GET requests,
+as the presence of the <code>Authorization</code> HTTP header used to send the Access Token creates a "non-simple" request, in
+line with the W3C's <a href="https://www.w3.org/TR/cors" title="Cross-Origin Resource Sharing">Cross-Origin Resource Sharing</a> specification.</p>
+<p>OPTIONS requests MUST NOT require authorization, such as the presence of an Access Token inside the <code>Authorization</code>
+header.</p>
+<p>The Authorization Server and Resource Servers MUST correctly reply to OPTIONS requests across all API endpoints,
+explicitly permitting the use of the <code>Authorization</code> header inside the <code>Access-Control-Allow-Headers</code> field.</p>
+<h3 id="error-codes-responses">Error Codes &amp; Responses</h3>
+<p>The NMOS APIs use HTTP status codes to indicate success, failure and other cases to clients as per <a href="https://tools.ietf.org/html/rfc7231#section-6.4.3" title="Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content">RFC 7231</a>
+and related standards.</p>
+<p>Authorization Servers MUST return error codes and responses in line with Section 5.2. of <a href="https://tools.ietf.org/html/rfc6749" title="The OAuth 2.0 Authorization Framework">RFC 6749</a>. OAuth
+2.0 Clients MUST be capable of handling such responses.</p>
+<p>Resource Servers MUST return error codes and responses in line with Section 3 of <a href="https://tools.ietf.org/html/rfc6750" title="The OAuth 2.0 Authorization Framework: Bearer Token Usage">RFC 6750</a>. OAuth 2.0
+Clients MUST be capable of handling such responses.</p>
+<p>Further details on when Resource Servers will respond with particular codes is covered in
+<a href="../4.5.%20Behaviour%20-%20Resource%20Servers/#accessing-protected-resources">Resource Servers - Accessing Protected Resources</a>.</p>
+<p>Where the RAML specification of an API specifies explicit response codes it is expected that a client will handle these
+cases in a particular way. As explicit handling of every possible HTTP response code is not expected, clients must
+instead implement more generic handling for ranges of response codes (1xx, 2xx, 3xx, 4xx and 5xx).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"provider":"mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
+      
+        <script src="../javascripts/json-viewer.js"></script>
+      
+        <script src="../javascripts/amwa-branding.js"></script>
+      
+    
+  </body>
+</html>

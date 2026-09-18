@@ -1,0 +1,1684 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>NMOS Authorization</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="generator" content="https://github.com/raml2html/raml2html 7.8.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/default.min.css">
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+          hljs.highlightBlock(block);
+        });
+        $('[data-toggle]').click(function() {
+          var selector = $(this).data('target') + ' pre code';
+          $(selector).each(function(i, block) {
+            hljs.highlightBlock(block);
+          });
+        });
+        // open modal on hashes like #_action_get
+        $(window).bind('hashchange', function(e) {
+          var anchor_id = document.location.hash.substr(1); //strip #
+          var element = $('#' + anchor_id);
+          // do we have such element + is it a modal?  --> show it
+          if (element.length && element.hasClass('modal')) {
+            element.modal('show');
+          }
+        });
+        // execute hashchange on first page load
+        $(window).trigger('hashchange');
+        // remove url fragment on modal hide
+        $('.modal').on('hidden.bs.modal', function() {
+          try {
+            if (history && history.replaceState) {
+              history.replaceState({}, '', '#');
+            }
+          } catch (e) {}
+        });
+      });
+    </script>
+    <style>
+      .hljs {
+        background: transparent;
+      }
+      .parent {
+        color: #999;
+      }
+      .list-group-item>.badge {
+        float: none;
+        margin-right: 6px;
+      }
+      .panel-title>.methods {
+        float: right;
+      }
+      .badge {
+        border-radius: 0;
+        text-transform: uppercase;
+        width: 70px;
+        font-weight: normal;
+        color: #f3f3f6;
+        line-height: normal;
+      }
+      .badge_get {
+        background-color: #63a8e2;
+      }
+      .badge_post {
+        background-color: #6cbd7d;
+      }
+      .badge_put {
+        background-color: #22bac4;
+      }
+      .badge_delete {
+        background-color: #d26460;
+      }
+      .badge_patch {
+        background-color: #ccc444;
+      }
+      .list-group,
+      .panel-group {
+        margin-bottom: 0;
+      }
+      .panel-group .panel+.panel-white {
+        margin-top: 0;
+      }
+      .panel-group .panel-white {
+        border-bottom: 1px solid #F5F5F5;
+        border-radius: 0;
+      }
+      .panel-white:last-child {
+        border-bottom-color: white;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+      }
+      .panel-white .panel-heading {
+        background: white;
+      }
+      .tab-pane ul {
+        padding-left: 2em;
+      }
+      .tab-pane h1 {
+        font-size: 1.3em;
+      }
+      .tab-pane h2 {
+        font-size: 1.2em;
+        padding-bottom: 4px;
+        border-bottom: 1px solid #ddd;
+      }
+      .tab-pane h3 {
+        font-size: 1.1em;
+      }
+      .tab-content {
+        border-left: 1px solid #ddd;
+        border-right: 1px solid #ddd;
+        border-bottom: 1px solid #ddd;
+        padding: 10px;
+      }
+      #sidebar {
+        margin-top: 30px;
+        padding-right: 5px;
+        overflow: auto;
+        height: 90%;
+      }
+      .top-resource-description {
+        border-bottom: 1px solid #ddd;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description {
+        border-bottom: 1px solid #fcfcfc;
+        background: #fcfcfc;
+        padding: 15px 15px 0 15px;
+        margin: -15px -15px 10px -15px;
+      }
+      .resource-description p:last-child {
+        margin: 0;
+      }
+      .list-group .badge {
+        float: left;
+      }
+      .method_description {
+        margin-left: 85px;
+      }
+      .method_description p:last-child {
+        margin: 0;
+      }
+      .list-group-item {
+        cursor: pointer;
+      }
+      .list-group-item:hover {
+        background-color: #f5f5f5;
+      }
+      pre code {
+        overflow: auto;
+        word-wrap: normal;
+        white-space: pre;
+      }
+      .items {
+        background: #f5f5f5;
+        color: #333;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        padding: 9.5px;
+        margin: 0 0 10px;
+        font-size: 13px;
+        line-height: 1.42857143;
+      }
+      .examples {
+        margin-left: 0.5em;
+      }
+      .resource-modal li>ul {
+        margin-bottom: 1em;
+      }
+      .required {
+        color: #f00;
+      }
+    </style>
+  </head>
+  <body data-spy="scroll" data-target="#sidebar">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-9" role="main">
+          <div class="page-header">
+            <h1>NMOS Authorization</h1>
+            <p>https://api.example.com</p>
+            <h3 id="overview"><a href="#overview">Overview</a></h3>
+            <p>The NMOS Authorization API is exposed by an Authorization Server as a standard interface for requesting, revoking,
+              and managing tokens and client registration.</p>
+            <p>Authorization Servers may use alternative paths for the required endpoints, provided these are reflected in the
+              Authorization Server Metadata. The endpoints may share a common base path that is the path component of the
+              issuer identifier or <strong>api_selector</strong>, for example &#39;x-nmos/auth/{api version}&#39;, but this is not mandatory.</p>
+            <h3 id="endpoint_discovery"><a href="#endpoint_discovery">Endpoint Discovery</a></h3>
+            <p>The Authorization Server URL is discoverable using unicast and/or multicast DNS using the &#39;_nmos-auth._tcp&#39;
+              service name.</p>
+            <h3 id="use_of_https_tls"><a href="#use_of_https_tls">Use of HTTPS/TLS</a></h3>
+            <p>The Authorization Server MUST require the use of TLS when interacting with the token and authorization endpoints.</p>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 id="registration_endpoint_path_" class="panel-title">OAuth 2.0 Dynamic Client Registration endpoint</h3>
+            </div>
+            <div class="panel-body">
+              <div class="panel-group">
+                <div class="panel panel-white resource-modal">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" href="#panel_registration_endpoint_path_">
+                        <span class="parent"></span>/{registration_endpoint_path}
+                      </a>
+                      <span class="methods">
+            <a href="#registration_endpoint_path__post">
+<!-- modal shown by hashchange event -->
+              <span class="badge badge_post">post</span>
+                      </a>
+                      <a href="#registration_endpoint_path__options">
+<!-- modal shown by hashchange event -->
+                        <span class="badge badge_options">options</span>
+                      </a>
+                      </span>
+                    </h4>
+                  </div>
+                  <div id="panel_registration_endpoint_path_" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="list-group">
+                        <div onclick="window.location.href = '#registration_endpoint_path__post'" class="list-group-item">
+                          <span class="badge badge_post">post</span>
+                          <div class="method_description">
+                            <p>Resource for registering clients with the authorization server.
+                              See <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a>.</p>
+                            <p><strong>Note</strong>: Request examples may be rendered as JSON objects, but should be passed in as "application/x-www-form-urlencoded"
+                              data types, in accordance with <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div onclick="window.location.href = '#registration_endpoint_path__options'" class="list-group-item">
+                          <span class="badge badge_options">options</span>
+                          <div class="method_description">
+                            <p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="registration_endpoint_path__post">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_post">post</span>
+                            <span class="parent"></span>/{registration_endpoint_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>Resource for registering clients with the authorization server.
+                              See <a href="https://tools.ietf.org/html/rfc7591">RFC 7591</a>.</p>
+                            <p><strong>Note</strong>: Request examples may be rendered as JSON objects, but should be passed in as "application/x-www-form-urlencoded"
+                              data types, in accordance with <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#registration_endpoint_path__post_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#registration_endpoint_path__post_response" data-toggle="tab">Response</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="registration_endpoint_path__post_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>registration_endpoint_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>registration_endpoint</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>register</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: application/json</p>
+                              <p><strong>Type</strong>:</p>
+                              <pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Register Client Request",
+  "description": "Object defining client registration request",
+  "type": "object",
+  "properties": {
+    "redirect_uris": {
+      "description": "Array of redirection URI strings for use in redirect-based flows such as the authorization code and implicit flows",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "token_endpoint_auth_method": {
+      "description": "String indicator of the requested authentication method for the token endpoint",
+      "type": "string"
+    },
+    "grant_types": {
+      "description": "Array of OAuth 2.0 grant type strings that the client can use at the token endpoint",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "response_types": {
+      "description": "Array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "client_name": {
+      "description": "Human-readable string name of the client to be presented to the end-user during authorization",
+      "type": "string"
+    },
+    "client_uri": {
+      "description": "URL string of a web page providing information about the client",
+      "type": "string"
+    },
+    "logo_uri": {
+      "description": "URL string that references a logo for the client",
+      "type": "string"
+    },
+    "scope": {
+      "description": "String containing a space-separated list of scope values",
+      "type": "string"
+    },
+    "contacts": {
+      "description": "Array of strings representing ways to contact people responsible for this client, typically email addresses",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tos_uri": {
+      "description": "URL string that points to a human-readable terms of service document for the client",
+      "type": "string"
+    },
+    "policy_uri": {
+      "description": "URL string that points to a human-readable privacy policy document",
+      "type": "string"
+    },
+    "jwks_uri": {
+      "description": "URL string referencing the client&#39;s JSON Web Key (JWK) Set document, which contains the client&#39;s public keys",
+      "type": "string"
+    },
+    "jwks": {
+      "description": "Client&#39;s JSON Web Key Set document value, which contains the client&#39;s public keys",
+      "type": "object",
+      "allOf": [
+        {"$ref": "jwks_schema.json"}
+      ]
+    },
+    "software_id": {
+      "description": "A unique identifier string (e.g. a UUID) assigned by the client developer or software publisher",
+      "type": "string"
+    },
+    "software_version": {
+      "description": "A version identifier string for the client software identified by &#39;software_id&#39;",
+      "type": "string"
+    }
+  },
+  "required": [ "client_name" ]
+}
+</code></pre>
+                              <p><strong>Examples</strong>:</p>
+                              <div class="examples">
+                                <p>
+                                  <strong>AuthCodeGrant</strong>:<br />
+                                </p>
+                                <pre><code>{
+  "client_name": "My Example Client",
+  "grant_types": ["authorization_code", "refresh_token"],
+  "redirect_uris": [
+    "https://client.example.com/callback",
+    "https://client.example.com/callback2"
+  ],
+  "response_types": ["code"],
+  "scope": "query connection",
+  "token_endpoint_auth_method": "client_secret_basic"
+}
+</code></pre>
+                                <p>
+                                  <strong>ClientCredentialsGrant</strong>:<br />
+                                </p>
+                                <pre><code>{
+  "client_name": "My Example Client",
+  "grant_types": ["client_credentials"],
+  "jwks_uri": "https://client.example.com/my_public_keys.jwks",
+  "response_types": ["none"],
+  "scope": "registration",
+  "token_endpoint_auth_method": "private_key_jwt"
+}
+</code></pre>
+                              </div>
+                            </div>
+                            <div class="tab-pane" id="registration_endpoint_path__post_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: application/json</p>
+                              <p><strong>Type</strong>:</p>
+                              <pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Register Client Response",
+  "description": "Object defining successful client registration",
+  "type": "object",
+  "properties": {
+    "client_id": {
+      "description": "OAuth 2.0 client identifier string",
+      "type": "string"
+    },
+    "client_secret": {
+      "description": "OAuth 2.0 client secret string",
+      "type": "string"
+    },
+    "client_id_issued_at": {
+      "description": "UTC time at which the client identifier was issued",
+      "type": "number"
+    },
+    "client_secret_expires_at": {
+      "description": "Time at which the client secret will expire or 0 if it will not expire",
+      "type": "number"
+    },
+    "redirect_uris": {
+      "description": "Array of redirection URI strings for use in redirect-based flows such as the authorization code and implicit flows",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "token_endpoint_auth_method": {
+      "description": "String indicator of the requested authentication method for the token endpoint",
+      "type": "string",
+      "default": "client_secret_basic"
+    },
+    "grant_types": {
+      "description": "Array of OAuth 2.0 grant type strings that the client can use at the token endpoint",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [ "authorization_code" ]
+    },
+    "response_types": {
+      "description": "Array of the OAuth 2.0 response type strings that the client can use at the authorization endpoint",
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "default": [ "code" ]
+    },
+    "client_name": {
+      "description": "Human-readable string name of the client to be presented to the end-user during authorization",
+      "type": "string"
+    },
+    "client_uri": {
+      "description": "URL string of a web page providing information about the client",
+      "type": "string"
+    },
+    "logo_uri": {
+      "description": "URL string that references a logo for the client",
+      "type": "string"
+    },
+    "scope": {
+      "description": "String containing a space-separated list of scope values",
+      "type": "string"
+    },
+    "contacts": {
+      "description": "Array of strings representing ways to contact people responsible for this client, typically email addresses",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "tos_uri": {
+      "description": "URL string that points to a human-readable terms of service document for the client",
+      "type": "string"
+    },
+    "policy_uri": {
+      "description": "URL string that points to a human-readable privacy policy document",
+      "type": "string"
+    },
+    "jwks_uri": {
+      "description": "URL string referencing the client&#39;s JSON Web Key (JWK) Set document, which contains the client&#39;s public keys",
+      "type": "string"
+    },
+    "jwks": {
+      "description": "Client&#39;s JSON Web Key Set document value, which contains the client&#39;s public keys",
+      "type": "object",
+      "allOf": [
+        {"$ref": "jwks_schema.json"}
+      ]
+    },
+    "software_id": {
+      "description": "A unique identifier string (e.g. a UUID) assigned by the client developer or software publisher",
+      "type": "string"
+    },
+    "software_version": {
+      "description": "A version identifier string for the client software identified by &#39;software_id&#39;",
+      "type": "string"
+    }
+  },
+  "required": ["client_id"]
+}
+</code></pre>
+                              <p><strong>Examples</strong>:</p>
+                              <div class="examples">
+                                <p>
+                                  <strong>AuthCodeGrant</strong>:<br />
+                                </p>
+                                <pre><code>{
+  "client_id": "s6BhdRkqt3",
+  "client_id_issued_at": 2893256800,
+  "client_secret": "cf136dc3c1fc93f31185e5885805d",
+  "client_secret_expires_at": 2893276800,
+  "redirect_uris": [
+    "https://client.example.com/callback",
+    "https://client.example.com/callback2"
+  ],
+  "scope": "query connection",
+  "token_endpoint_auth_method": "client_secret_basic"
+}
+</code></pre>
+                                <p>
+                                  <strong>ClientCredentialsGrant</strong>:<br />
+                                </p>
+                                <pre><code>{
+  "client_id": "s6BhdRkqt3",
+  "client_id_issued_at": 2893256800,
+  "client_name":"My Example Client",
+  "grant_types":["client_credentials"],
+  "jwks_uri":"https://client.example.com/my_public_keys.jwks",
+  "scope": "registration",
+  "token_endpoint_auth_method":"private_key_jwt"
+}
+</code></pre>
+                              </div>
+                              <h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2>
+                              <p>Unsuccessful client registration (in line with Section 3.2.2. of RFC 7591)</p>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: application/json</p>
+                              <p><strong>Type</strong>:</p>
+                              <pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Client Registration Error Response",
+  "description": "Describes the client registration endpoint&#39;s OAuth error response",
+  "type": "object",
+  "minItems": 1,
+  "properties": {
+    "error": {
+      "description": "Error Type",
+      "type": "string",
+      "enum": ["invalid_redirect_uri", "invalid_client_metadata", "invalid_software_statement", "unapproved_software_statement"]
+    },
+    "error_description": {
+      "description": "Human-readable ASCII text providing additional information",
+      "type": "string"
+    },
+    "error_uri": {
+      "description": "A URI identifying a human-readable web page with information about the error",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": ["error"]
+}
+</code></pre>
+                              <p><strong>Example</strong>:</p>
+                              <div class="examples">
+                                <pre><code>{
+    "error": "invalid_redirect_uri"
+}
+</code></pre>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="registration_endpoint_path__options">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_options">options</span>
+                            <span class="parent"></span>/{registration_endpoint_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#registration_endpoint_path__options_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#registration_endpoint_path__options_response" data-toggle="tab">Response</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="registration_endpoint_path__options_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>registration_endpoint_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>registration_endpoint</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>register</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-pane" id="registration_endpoint_path__options_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 id="token_endpoint_path_" class="panel-title">OAuth 2.0 Token endpoint</h3>
+            </div>
+            <div class="panel-body">
+              <div class="panel-group">
+                <div class="panel panel-white resource-modal">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" href="#panel_token_endpoint_path_">
+                        <span class="parent"></span>/{token_endpoint_path}
+                      </a>
+                      <span class="methods">
+            <a href="#token_endpoint_path__post">
+<!-- modal shown by hashchange event -->
+              <span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span>
+                      </a>
+                      <a href="#token_endpoint_path__options">
+<!-- modal shown by hashchange event -->
+                        <span class="badge badge_options">options</span>
+                      </a>
+                      </span>
+                    </h4>
+                  </div>
+                  <div id="panel_token_endpoint_path_" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="list-group">
+                        <div onclick="window.location.href = '#token_endpoint_path__post'" class="list-group-item">
+                          <span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span>
+                          <div class="method_description">
+                            <p>Method for requesting OAuth 2.0 Bearer Token (Authorization Code, Client Credentials and Refresh Token grants).</p>
+                            <p><strong>Note</strong>: The data flow is dependent on the chosen grant type (e.g. authorization_code, refresh_token, etc.)</p>
+                            <p><strong>Note</strong>: Request examples may be rendered as JSON objects, but should be passed in as "application/x-www-form-urlencoded"
+                              MIME type, in accordance with <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div onclick="window.location.href = '#token_endpoint_path__options'" class="list-group-item">
+                          <span class="badge badge_options">options</span>
+                          <div class="method_description">
+                            <p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="token_endpoint_path__post">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span>
+                            <span class="parent"></span>/{token_endpoint_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>Method for requesting OAuth 2.0 Bearer Token (Authorization Code, Client Credentials and Refresh Token grants).</p>
+                            <p><strong>Note</strong>: The data flow is dependent on the chosen grant type (e.g. authorization_code, refresh_token, etc.)</p>
+                            <p><strong>Note</strong>: Request examples may be rendered as JSON objects, but should be passed in as "application/x-www-form-urlencoded"
+                              MIME type, in accordance with <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.</p>
+                          </div>
+                          <div class="alert alert-warning">
+                            <span class="glyphicon glyphicon-lock" title="Authentication required"></span>
+                            Secured by <b>Basic Authentication</b>
+                            <p>This API supports Basic Authentication using client ID and client secret as username and password credentials respectively.</p>
+                          </div>
+                          <div class="alert alert-warning">
+                            <span class="glyphicon glyphicon-lock" title="Authentication required"></span>
+                            Secured by <b>JSON Web Token Authentication</b>
+                            <p>This API supports authentication using a JSON Web Token, signed by a private key which the Authorization Server holds the corresponding public key for.</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#token_endpoint_path__post_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#token_endpoint_path__post_response" data-toggle="tab">Response</a>
+                            </li>
+                            <li>
+                              <a href="#token_endpoint_path__post_securedby" data-toggle="tab">Security</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="token_endpoint_path__post_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>token_endpoint_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>token_endpoint</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>token</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                              <h3>Headers</h3>
+                              <ul>
+                                <li>
+                                  <strong>Authorization</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>Colon-seperated, base-64 encoded string, of Client ID and Client Secret</p>
+                                </li>
+                              </ul>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: application/x-www-form-urlencoded</p>
+                              <p><strong>Type</strong>: TokenAuthorizeRequest | TokenCredentialsRequest | TokenRefreshRequest</p>
+                              <p><strong>Examples</strong>:</p>
+                              <div class="examples">
+                                <p>
+                                  <strong>AuthCodeGrant</strong>:<br />
+                                </p>
+                                <pre><code>{
+  "grant_type": "authorization_code",
+  "code": "SplxlOBeZQQYbYS6WxSbIA",
+  "redirect_uri": "http://client.example.com/",
+  "client_id": "ttwCD9hb4OckmcGDnmC3J3Jr"
+}</code></pre>
+                                <p>
+                                  <strong>ClientCredentialsGrant</strong>:<br />
+                                </p>
+                                <pre><code>{
+  "grant_type": "client_credentials",
+  "client_id": "c1068569-80c1-48cf-982e-30c3f930dfe3",
+  "client_assertion_type": "urn:ietf:params:oauth:client-assertion-type:jwt-bearer",
+  "client_assertion": "eyJhbGciOiJSUzI1NiIsInR5cCI...."
+}</code></pre>
+                                <p>
+                                  <strong>RefreshTokenGrant</strong>:<br />
+                                </p>
+                                <pre><code>{
+  "grant_type": "refresh_token",
+  "refresh_token": "tGzv3JOkF0XG5Qx2TlKWIA"
+}</code></pre>
+                              </div>
+                            </div>
+                            <div class="tab-pane" id="token_endpoint_path__post_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <p>Successful request to obtain a Bearer Token, consisting of the Access Token and optionally a Refresh Token to be used to request further Access Tokens.</p>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: application/json</p>
+                              <p><strong>Type</strong>:</p>
+                              <pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Token Response",
+  "description": "OAuth2 Response for the request of a Bearer Token",
+  "type": "object",
+  "properties": {
+    "access_token": {
+      "description": "Access Token to be used in accessing protected endpoints",
+      "type": "string"
+    },
+    "expires_in": {
+      "description": "The lifetime in seconds of the Access Token",
+      "type": "integer"
+    },
+    "refresh_token": {
+      "description": "Refresh Token to be used to obtain further Access Tokens",
+      "type": "string"
+    },
+    "scope": {
+      "description": "The scope of the Access Token",
+      "type": "string"
+    },
+    "token_type": {
+      "description": "The type of the Token issued",
+      "type": "string"
+    }
+  },
+  "required": ["access_token", "expires_in", "token_type"]
+}
+</code></pre>
+                              <p><strong>Example</strong>:</p>
+                              <div class="examples">
+                                <pre><code>{
+  "access_token":"eyJhbGciOiJSUzUxMiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJodHRwczovL3NlcnZlci5leGFtcGxlLmNvbS92MS4wIiwic3ViIjoidXNlcm5hbWVAZXhhbXBsZS5jb20iLCJhdWQiOlsiKi5leGFtcGxlLmNvbSJdLCJpYXQiOjE1NDg3Nzk0NjAsImV4cCI6MTU0ODc3OTUyMCwic2NvcGUiOiJyZWdpc3RyYXRpb24gcXVlcnkgY29ubmVjdGlvbiIsImNsaWVudF9pZCI6ImhvcHkwZE5SUE5UaUdKRHFQZnFZd0dtdyIsIngtbm1vcy1yZWdpc3RyYXRpb24iOnsicmVhZCI6WyIqIl19LCJ4LW5tb3MtcXVlcnkiOnsicmVhZCI6WyIqIl0sIndyaXRlIjpbInN1YnNjcmlwdGlvbnMvKiJdfSwieC1ubW9zLWNvbm5lY3Rpb24iOnsicmVhZCI6WyIqIl0sIndyaXRlIjpbInNpbmdsZS8qIl19fQ.PQsBE3ZGMrfAJN6ev-2oZ_CNkRFbRGRzuUKJdfpDwaOJc8VdMSmNjehxsKiz67BoLkb_x23D1GrRoQEB4ZGj6_UnPXOpax9xpbE8bQfFGCuCdfzD_u9Ju0nmLzZT1MJk5dj4z3OVKGYq36o8sDPURHizKVJ5aOUihazPxR9gqHXESvn4IWpk951m9dzrYoks4Yyq6yf6K4OkwXpbtr78JQp927ceIocVNAtTbGHo_h0F2uVA_uuCISYLx6C1-8v6zBLXmEevbAZyN3aujEh3qZ8-x7bYHEv5Kq5Kt_aeEesFkor57_KK8OBQaiAfdH6voF6ots_r_z4MkzfH2zjBHw",
+  "token_type":"Bearer",
+  "expires_in":60,
+  "refresh_token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjUyM2Y0NmVjLWE0MzUtNGVkOS05ODBjLWZlM2Y4YmMwYzY1OCJ9.eyJpc3MiOiJodHRwczovL3NlcnZlci5leGFtcGxlLmNvbS92MS4wIiwic3ViIjoidXNlcm5hbWVAZXhhbXBsZS5jb20iLCJhdWQiOiJodHRwczovL3NlcnZlci5leGFtcGxlL2NvbS92MS4wIiwiaWF0IjoxNTQ4Nzc5NDYwLCJleHAiOjE1NDg3ODEyNjAsInNjb3BlIjoicmVnaXN0cmF0aW9uIHF1ZXJ5IGNvbm5lY3Rpb24iLCJjbGllbnRfaWQiOiJob3B5MGROUlBOVGlHSkRxUGZxWXdHbXcifQ.5_1pQnbCMQn4Z62hmlyqqc-LzsogyOMrRFxy46td368",
+  "refresh_expires_in":1800
+}
+</code></pre>
+                              </div>
+                              <h2>HTTP status code <a href="http://httpstatus.es/400" target="_blank">400</a></h2>
+                              <p>Unsuccessful token requests</p>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: application/json</p>
+                              <p><strong>Type</strong>:</p>
+                              <pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "Token Error Response",
+  "description": "Describes the token endpoint&#39;s OAuth error response",
+  "type": "object",
+  "minItems": 1,
+  "properties": {
+    "error": {
+      "description": "Error Type",
+      "type": "string",
+      "enum": ["invalid_request", "invalid_client", "invalid_grant", "unauthorized_client", "unsupported_grant_type", "invalid_scope", "unsupported_token_type"]
+    },
+    "error_description": {
+      "description": "Human-readable ASCII text providing additional information",
+      "type": "string"
+    },
+    "error_uri": {
+      "description": "A URI identifying a human-readable web page with information about the error",
+      "type": "string",
+      "format": "uri"
+    }
+  },
+  "required": ["error"]
+}
+</code></pre>
+                              <p><strong>Example</strong>:</p>
+                              <div class="examples">
+                                <pre><code>{
+  "error": "invalid_request"
+}
+</code></pre>
+                              </div>
+                              <h2>HTTP status code <a href="http://httpstatus.es/401" target="_blank">401</a></h2>
+                              <p>Unsuccessful Client Authentication</p>
+                            </div>
+                            <div class="tab-pane" id="token_endpoint_path__post_securedby">
+                              <h1>Secured by Basic Authentication</h1>
+                              <h1>Secured by JSON Web Token Authentication</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="token_endpoint_path__options">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_options">options</span>
+                            <span class="parent"></span>/{token_endpoint_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#token_endpoint_path__options_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#token_endpoint_path__options_response" data-toggle="tab">Response</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="token_endpoint_path__options_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>token_endpoint_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>token_endpoint</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>token</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-pane" id="token_endpoint_path__options_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 id="jwks_uri_path_" class="panel-title">JSON Web Key Set endpoint</h3>
+            </div>
+            <div class="panel-body">
+              <div class="panel-group">
+                <div class="panel panel-white resource-modal">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" href="#panel_jwks_uri_path_">
+                        <span class="parent"></span>/{jwks_uri_path}
+                      </a>
+                      <span class="methods">
+            <a href="#jwks_uri_path__get">
+<!-- modal shown by hashchange event -->
+              <span class="badge badge_get">get</span>
+                      </a>
+                      </span>
+                    </h4>
+                  </div>
+                  <div id="panel_jwks_uri_path_" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="list-group">
+                        <div onclick="window.location.href = '#jwks_uri_path__get'" class="list-group-item">
+                          <span class="badge badge_get">get</span>
+                          <div class="method_description">
+                            <p>Request the JSON Web Keys. See <a href="https://tools.ietf.org/html/rfc7517">RFC 7517</a>.</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="jwks_uri_path__get">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_get">get</span>
+                            <span class="parent"></span>/{jwks_uri_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>Request the JSON Web Keys. See <a href="https://tools.ietf.org/html/rfc7517">RFC 7517</a>.</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#jwks_uri_path__get_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#jwks_uri_path__get_response" data-toggle="tab">Response</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="jwks_uri_path__get_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>jwks_uri_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>jwks_uri</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>jwks</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-pane" id="jwks_uri_path__get_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <p>Successful request to obtain JSON dictionary of available JSON Web Keys to validate token against.</p>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: application/json</p>
+                              <p><strong>Type</strong>:</p>
+                              <pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "JWKs Response",
+  "description": "JSON Web Key Set to validate Access Token",
+  "type": "object",
+  "allOf": [
+    {"$ref": "jwks_schema.json"}
+  ]
+}
+</code></pre>
+                              <p><strong>Example</strong>:</p>
+                              <div class="examples">
+                                <pre><code>{
+  "keys": [
+    {
+      "kty":"EC",
+      "crv":"P-256",
+      "x":"MKBCTNIcKUSDii11ySs3526iDZ8AiTo7Tu6KPAqv7D4",
+      "y":"4Etl6SRW2YiLUrN5vfvVHuhp7x8PxltmWWlbbM4IFyM",
+      "use":"enc",
+      "kid":"1"
+    },
+    {
+      "kty":"RSA",
+      "n": "0vx7agoebGcQSuuPiLJXZptN9nndrQmbXEps2aiAFbWhM78LhWx4cbbfAAtVT86zwu1RK7aPFFxuhDR1L6tSoc_BJECPebWKRXjBZCiFV4n3oknjhMstn64tZ_2W-5JsGY4Hc5n9yBXArwl93lqt7_RN5w6Cf0h4QyQ5v-65YGjQR0_FDW2QvzqY368QQMicAtaSqzs8KJZgnYb9c7d0zgdAZHzu6qMQvRL5hajrn1n91CbOpbISD08qNLyrdkt-bFTWhAI4vMQFh6WeZu0fM4lFd2NcRwr3XPksINHaQ-G_xBniIqbw0Ls1jF44-csFCur-kEgU8awapJzKnqDKgw",
+      "e":"AQAB",
+      "alg":"RS256",
+      "kid":"2011-04-29"
+    }
+  ]
+}
+</code></pre>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 id="authorization_endpoint_path_" class="panel-title">OAuth 2.0 Authorization endpoint</h3>
+            </div>
+            <div class="panel-body">
+              <div class="panel-group">
+                <div class="panel panel-white resource-modal">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" href="#panel_authorization_endpoint_path_">
+                        <span class="parent"></span>/{authorization_endpoint_path}
+                      </a>
+                      <span class="methods">
+            <a href="#authorization_endpoint_path__get">
+<!-- modal shown by hashchange event -->
+              <span class="badge badge_get">get</span>
+                      </a>
+                      <a href="#authorization_endpoint_path__post">
+<!-- modal shown by hashchange event -->
+                        <span class="badge badge_post">post</span>
+                      </a>
+                      <a href="#authorization_endpoint_path__options">
+<!-- modal shown by hashchange event -->
+                        <span class="badge badge_options">options</span>
+                      </a>
+                      </span>
+                    </h4>
+                  </div>
+                  <div id="panel_authorization_endpoint_path_" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="list-group">
+                        <div onclick="window.location.href = '#authorization_endpoint_path__get'" class="list-group-item">
+                          <span class="badge badge_get">get</span>
+                          <div class="method_description">
+                            <p>The client directs the resource owner to this URI, enabling the resource owner to approve the client.
+                              See Section 4 of <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div onclick="window.location.href = '#authorization_endpoint_path__post'" class="list-group-item">
+                          <span class="badge badge_post">post</span>
+                          <div class="method_description">
+                            <p>Means of confirming Resource Owner approval.
+                              See <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div onclick="window.location.href = '#authorization_endpoint_path__options'" class="list-group-item">
+                          <span class="badge badge_options">options</span>
+                          <div class="method_description">
+                            <p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="authorization_endpoint_path__get">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_get">get</span>
+                            <span class="parent"></span>/{authorization_endpoint_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>The client directs the resource owner to this URI, enabling the resource owner to approve the client.
+                              See Section 4 of <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#authorization_endpoint_path__get_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#authorization_endpoint_path__get_response" data-toggle="tab">Response</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="authorization_endpoint_path__get_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>authorization_endpoint_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>authorization_endpoint</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>authorize</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                              <h3>Query Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>response_type</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>Type of OAuth 2.0 response. MUST be set to "code"</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>response_type=code</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>client_id</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>The identifier of the client authenticating</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>client_id=s6BhdRkqt3</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>redirect_uri</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>URI to direct resource owner&#39;s user-agent back to clients</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>scope</strong>:
+                                  <em>(string)
+      </em>
+                                  <p>The scope of the access request</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>scope=photos</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>state</strong>:
+                                  <em>(string)
+      </em>
+                                  <p>Value used by client to maintain state between request and callback</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>state=xyz</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>code_challenge</strong>:
+                                  <em>(string)
+      </em>
+                                  <p>Derived from the code_verifier - a high-entropy cryptographic random string</p>
+                                </li>
+                                <li>
+                                  <strong>code_challenge_method</strong>:
+                                  <em>(one of plain, S256 - default: plain)
+      </em>
+                                  <p>Code verifier transformation method</p>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-pane" id="authorization_endpoint_path__get_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <p>UI / Web Form for the resource owner to confirm the authorization.</p>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: text/html</p>
+                              <p><strong>Type</strong>: file</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="authorization_endpoint_path__post">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_post">post</span>
+                            <span class="parent"></span>/{authorization_endpoint_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>Means of confirming Resource Owner approval.
+                              See <a href="https://tools.ietf.org/html/rfc6749">RFC 6749</a>.</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#authorization_endpoint_path__post_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#authorization_endpoint_path__post_response" data-toggle="tab">Response</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="authorization_endpoint_path__post_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>authorization_endpoint_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>authorization_endpoint</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>authorize</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                              <h3>Query Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>response_type</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>Type of OAuth 2.0 response. MUST be set to "code"</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>response_type=code</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>client_id</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>The identifier of the client authenticating</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>client_id=s6BhdRkqt3</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>redirect_uri</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>URI to direct resource owner&#39;s user-agent back to clients</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>scope</strong>:
+                                  <em>(string)
+      </em>
+                                  <p>The scope of the access request</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>scope=photos</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>state</strong>:
+                                  <em>(string)
+      </em>
+                                  <p>Value used by client to maintain state between request and callback</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>state=xyz</code></pre>
+                                  </div>
+                                </li>
+                                <li>
+                                  <strong>code_challenge</strong>:
+                                  <em>(string)
+      </em>
+                                  <p>Derived from the code_verifier - a high-entropy cryptographic random string</p>
+                                </li>
+                                <li>
+                                  <strong>code_challenge_method</strong>:
+                                  <em>(one of plain, S256 - default: plain)
+      </em>
+                                  <p>Code verifier transformation method</p>
+                                </li>
+                              </ul>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: application/json</p>
+                              <p><strong>Type</strong>: object</p>
+                              <strong>Properties</strong>
+                              <ul>
+                                <li>
+                                  <strong>confirm</strong>:
+                                  <em><span class="required">required </span>(boolean)
+      </em>
+                                  <p>Boolean comfirmation of Resource Owner authorization.</p>
+                                  <p><strong>Note</strong>: This is merely an example of one mechanism for obtaining the
+                                    resource owner&#39;s approval. This is not covered in an RFC and is implementation-specific.</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>true</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-pane" id="authorization_endpoint_path__post_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/302" target="_blank">302</a></h2>
+                              <p>Redirection of endpoint to client URI</p>
+                              <h3>Headers</h3>
+                              <ul>
+                                <li>
+                                  <strong>Location</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>The redirect URI with the Authorization Code and State parameters added to the query component of the redirection URI.</p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>HTTP/1.1 302 Found
+Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&amp;state=xyz
+</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="authorization_endpoint_path__options">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_options">options</span>
+                            <span class="parent"></span>/{authorization_endpoint_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#authorization_endpoint_path__options_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#authorization_endpoint_path__options_response" data-toggle="tab">Response</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="authorization_endpoint_path__options_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>authorization_endpoint_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>authorization_endpoint</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>authorize</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-pane" id="authorization_endpoint_path__options_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h3 id="revocation_endpoint_path_" class="panel-title">OAuth 2.0 Token Revocation endpoint (optional)</h3>
+            </div>
+            <div class="panel-body">
+              <div class="panel-group">
+                <div class="panel panel-white resource-modal">
+                  <div class="panel-heading">
+                    <h4 class="panel-title">
+                      <a class="collapsed" data-toggle="collapse" href="#panel_revocation_endpoint_path_">
+                        <span class="parent"></span>/{revocation_endpoint_path}
+                      </a>
+                      <span class="methods">
+            <a href="#revocation_endpoint_path__post">
+<!-- modal shown by hashchange event -->
+              <span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span>
+                      </a>
+                      <a href="#revocation_endpoint_path__options">
+<!-- modal shown by hashchange event -->
+                        <span class="badge badge_options">options</span>
+                      </a>
+                      </span>
+                    </h4>
+                  </div>
+                  <div id="panel_revocation_endpoint_path_" class="panel-collapse collapse">
+                    <div class="panel-body">
+                      <div class="list-group">
+                        <div onclick="window.location.href = '#revocation_endpoint_path__post'" class="list-group-item">
+                          <span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span>
+                          <div class="method_description">
+                            <p>Endpoint for revoking specific Access/Refresh Tokens.
+                              See <a href="https://tools.ietf.org/html/rfc7009">RFC 7009</a>.</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                        <div onclick="window.location.href = '#revocation_endpoint_path__options'" class="list-group-item">
+                          <span class="badge badge_options">options</span>
+                          <div class="method_description">
+                            <p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p>
+                          </div>
+                          <div class="clearfix"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="revocation_endpoint_path__post">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_post">post <span class="glyphicon glyphicon-lock" title="Authentication required"></span></span>
+                            <span class="parent"></span>/{revocation_endpoint_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>Endpoint for revoking specific Access/Refresh Tokens.
+                              See <a href="https://tools.ietf.org/html/rfc7009">RFC 7009</a>.</p>
+                          </div>
+                          <div class="alert alert-warning">
+                            <span class="glyphicon glyphicon-lock" title="Authentication required"></span>
+                            Secured by <b>Basic Authentication</b>
+                            <p>This API supports Basic Authentication using client ID and client secret as username and password credentials respectively.</p>
+                          </div>
+                          <div class="alert alert-warning">
+                            <span class="glyphicon glyphicon-lock" title="Authentication required"></span>
+                            Secured by <b>JSON Web Token Authentication</b>
+                            <p>This API supports authentication using a JSON Web Token, signed by a private key which the Authorization Server holds the corresponding public key for.</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#revocation_endpoint_path__post_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#revocation_endpoint_path__post_response" data-toggle="tab">Response</a>
+                            </li>
+                            <li>
+                              <a href="#revocation_endpoint_path__post_securedby" data-toggle="tab">Security</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="revocation_endpoint_path__post_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>revocation_endpoint_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>revocation_endpoint</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>revoke</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                              <h3>Headers</h3>
+                              <ul>
+                                <li>
+                                  <strong>Authorization</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>Colon-seperated, base-64 encoded string, of Client ID and Client Secret</p>
+                                </li>
+                              </ul>
+                              <h3>Body</h3>
+                              <p><strong>Media type</strong>: application/x-www-form-urlencoded</p>
+                              <p><strong>Type</strong>: object</p>
+                              <strong>Properties</strong>
+                              <ul>
+                                <li>
+                                  <strong>access_token</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>The token (access / refresh) that the client wants to revoke</p>
+                                </li>
+                                <li>
+                                  <strong>token_type_hint</strong>:
+                                  <em><span class="required">required </span>(one of access_token, refresh_token)
+      </em>
+                                  <p>A hint about the type of the token submitted for revocation</p>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-pane" id="revocation_endpoint_path__post_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <p>the token has been revoked successfully or if the client submitted an invalid token.</p>
+                            </div>
+                            <div class="tab-pane" id="revocation_endpoint_path__post_securedby">
+                              <h1>Secured by Basic Authentication</h1>
+                              <h1>Secured by JSON Web Token Authentication</h1>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal fade" tabindex="0" id="revocation_endpoint_path__options">
+                    <div class="modal-dialog modal-lg">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                          <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_options">options</span>
+                            <span class="parent"></span>/{revocation_endpoint_path}
+                          </h4>
+                        </div>
+                        <div class="modal-body">
+                          <div class="alert alert-info">
+                            <p>A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes</p>
+                          </div>
+
+                          <!-- Nav tabs -->
+                          <ul class="nav nav-tabs">
+                            <li class="active">
+                              <a href="#revocation_endpoint_path__options_request" data-toggle="tab">Request</a>
+                            </li>
+                            <li>
+                              <a href="#revocation_endpoint_path__options_response" data-toggle="tab">Response</a>
+                            </li>
+                          </ul>
+
+                          <!-- Tab panes -->
+                          <div class="tab-content">
+                            <div class="tab-pane active" id="revocation_endpoint_path__options_request">
+                              <h3>URI Parameters</h3>
+                              <ul>
+                                <li>
+                                  <strong>revocation_endpoint_path</strong>:
+                                  <em><span class="required">required </span>(string)
+      </em>
+                                  <p>This path is defined by the <strong>revocation_endpoint</strong> in the OAuth 2.0 Authorization Server Metadata, as per
+                                    <a href="https://tools.ietf.org/html/rfc8414">RFC 8414</a> Section 2.
+                                  </p>
+                                  <p><strong>Example</strong>:</p>
+                                  <div class="examples">
+                                    <pre><code>revoke</code></pre>
+                                  </div>
+                                </li>
+                              </ul>
+                            </div>
+                            <div class="tab-pane" id="revocation_endpoint_path__options_response">
+                              <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                              <h2>HTTP status code <a href="http://httpstatus.es/403" target="_blank">403</a></h2>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div id="sidebar" class="hidden-print affix" role="complementary">
+            <ul class="nav nav-pills nav-stacked">
+              <li><a href="#registration_endpoint_path_">OAuth 2.0 Dynamic Client Registration endpoint</a></li>
+              <li><a href="#token_endpoint_path_">OAuth 2.0 Token endpoint</a></li>
+              <li><a href="#jwks_uri_path_">JSON Web Key Set endpoint</a></li>
+              <li><a href="#authorization_endpoint_path_">OAuth 2.0 Authorization endpoint</a></li>
+              <li><a href="#revocation_endpoint_path_">OAuth 2.0 Token Revocation endpoint (optional)</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
