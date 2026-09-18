@@ -1,0 +1,1600 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://specs.amwa.tv/new/is-10/v1.0.x/Behaviour%20-%20Access%20Tokens/">
+      
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.62">
+    
+    
+      
+        <title>Behaviour: Access Tokens - AMWA IS-10 NMOS Authorization Specification</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../assets/stylesheets/modern/main.ce62732f.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="../stylesheets/amwa-branding.css">
+    
+    <script>__md_scope=new URL("..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#behaviour-access-tokens" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="./.." title="AMWA IS-10 NMOS Authorization Specification" class="md-header__button md-logo" aria-label="AMWA IS-10 NMOS Authorization Specification" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AMWA IS-10 NMOS Authorization Specification
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Behaviour: Access Tokens
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+        <a href="https://github.com/AMWA-TV/is-10" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/is-10
+  </div>
+</a>
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="./.." title="AMWA IS-10 NMOS Authorization Specification" class="md-nav__button md-logo" aria-label="AMWA IS-10 NMOS Authorization Specification" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 5v16M20.001 19A2 2 0 0 0 22 17V5a2 2 0 0 0-1.999-2L16 3.002A5 5 0 0 0 12 5a5 5 0 0 0-4-2H4a2 2 0 0 0-2 2v12a2 2 0 0 0 1.999 2H8a5 5 0 0 1 4 2 5 5 0 0 1 4-2z"/></svg>
+
+    </a>
+    AMWA IS-10 NMOS Authorization Specification
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/AMWA-TV/is-10" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.3.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2026 Fonticons, Inc.--><path fill="currentColor" d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    AMWA-TV/is-10
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="./.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AMWA IS-10 NMOS Authorization Specification
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  API Definitions
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  API Definitions
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  APIs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/AuthorizationAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  AuthorizationAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../APIs/ServerMetadataAPI/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ServerMetadataAPI
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  JSON Schemas
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  JSON Schemas
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  JSON Schemas
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/auth_metadata/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  auth_metadata
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/jwks_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  jwks_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/jwks_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  jwks_schema
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/register_client_error_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register_client_error_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/register_client_request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register_client_request
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/register_client_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register_client_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/token_error_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token_error_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/token_response/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token_response
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../schemas/token_schema/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token_schema
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Examples
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Examples
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Examples
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/access_token/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  access_token.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/auth-metadata-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  auth-metadata-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/auth-metadata-issuer-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  auth-metadata-issuer-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/jwks-get-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  jwks-get-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-authorization-code-grant-client-post-201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-authorization-code-grant-client-post-201.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-authorization-code-grant-client-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-authorization-code-grant-client-post-request.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-client-credentials-grant-client-post-201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-client-credentials-grant-client-post-201.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-client-credentials-grant-client-post-request/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-client-credentials-grant-client-post-request.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-client-post-201/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-client-post-201.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/register-client-post-400/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  register-client-post-400.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/token-post-200/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token-post-200.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/token-post-400/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  token-post-400.json
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                      
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#registered-claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Registered Claims
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Registered Claims">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iss" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        iss
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sub" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        sub
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#aud" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        aud
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exp" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        exp
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iat" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        iat
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#client_id" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        client_id
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#azp" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        azp
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        scope
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nbf" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        nbf
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#private-claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Private Claims
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Private Claims">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#x-nmos-" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        x-nmos-*
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="x-nmos-*">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-access-permissions-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        The Access Permissions Object
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-x-nmos-claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example <code>x-nmos-*</code> Claims
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#size-considerations" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Size Considerations
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#example-access-token-claim-set" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Example Access Token Claim Set
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#access-token-lifetime" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Access Token Lifetime
+      </span>
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+  
+  
+
+
+<h1 id="behaviour-access-tokens">Behaviour: Access Tokens</h1>
+<p><em>(c) AMWA 2019, CC Attribution-NoDerivatives 4.0 International (CC BY-ND 4.0)</em></p>
+<p>The Access Token type returned MUST be of the <code>Bearer_token</code> type specified in <a href="https://tools.ietf.org/html/rfc6750" title="The OAuth 2.0 Authorization Framework: Bearer Token Usage">RFC 6750</a>.</p>
+<p>The Access Token MUST be a JSON Web Signature (JWS) as defined by <a href="https://tools.ietf.org/html/rfc7515" title="JSON Web Signature (JWS)">RFC 7515</a>. JSON Web Algorithms (JWA) MUST
+NOT be used.</p>
+<p>The JWS MUST be signed with <code>RSASSA-PKCS1-v1_5 using SHA-512</code>, meaning the value of the <code>alg</code> field in the token's JOSE
+(JSON Object Signing and Encryption) header (see <a href="https://tools.ietf.org/html/rfc7515" title="JSON Web Signature (JWS)">RFC 7515</a>) MUST be set to <code>RS512</code> as defined in
+<a href="https://tools.ietf.org/html/rfc7518" title="JSON Web Algorithms (JWA)">RFC 7518</a>. An example JOSE header would be:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"typ"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JWT"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"alg"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RS512"</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="registered-claims">Registered Claims</h2>
+<p>Registered claims are defined in the authorization JSON Web Token specification in <a href="https://tools.ietf.org/html/rfc7519" title="JSON Web Token (JWT)">RFC 7519</a>, but their
+specific usage is left to the application. NMOS API Clients and Servers implementing this specification MUST employ the
+restrictions on claims outlined below, in addition to implementing tokens as specified in <a href="https://tools.ietf.org/html/rfc7519" title="JSON Web Token (JWT)">RFC 7519</a>.</p>
+<h3 id="iss">iss</h3>
+<p><em>Identifies principal that issued the JWT</em></p>
+<p>The <code>iss</code> (issuer) claim MUST be included in the token. The claim MUST contain a URL value that identifies the
+Authorization Server that issued the JWT as specified in section 2 of <a href="https://tools.ietf.org/html/rfc8414" title="OAuth 2.0 Authorization Server Metadata">RFC 8414</a>. The URL host value
+SHOULD match one entry in the common name field or alternate names fields in all TLS certificates used by the
+Authorization Server.</p>
+<h3 id="sub">sub</h3>
+<p><em>Identifies the subject of the JWT</em></p>
+<p>The <code>sub</code> (subject) claim MUST be included in the token. This claim MUST contain a unique identifier assigned to the
+end-user by the user authorization system. For example, this may be a username in a Single Sign-On (SSO) system, or the
+email address of the user.</p>
+<p>For the authorization code grant, the subject typically identifies the authorized accessor for which the Access Token
+is being requested.</p>
+<h3 id="aud">aud</h3>
+<p><em>Identifies the recipients of the JWT</em></p>
+<p>The <code>aud</code> (audience) claim MUST be included in the token. This claim MUST contain a JSON array of case-sensitive
+strings, each containing a StringOrURI value that identifies the recipients that the JWT is intended for. It is
+RECOMMENDED that the JSON array contains the fully resolved domain names of the intended recipients, or a domain
+name containing wild-card characters in order to target a subset of devices on a network. Such wild-carding of domain
+names is documented in <a href="https://tools.ietf.org/html/rfc4592" title="The Role of Wildcards in the Domain Name System">RFC 4592</a>.</p>
+<p>If the <code>aud</code> claim is present and does not match the fully resolved domain name of the resource server, the Resource
+Server MUST reject the token.</p>
+<p>URI based <code>aud</code> claims MUST NOT include port numbers, URL paths or URL query parameters. Resource Servers MUST be capable
+of interpreting both URI based <code>aud</code> claims which are prefixed by a scheme (such as <code>https://</code>) and string based <code>aud</code>
+claims which specify only a domain name.</p>
+<h3 id="exp">exp</h3>
+<p><em>Expiration time of the token</em></p>
+<p>The <code>exp</code> (expiration) claim MUST be included in the token. This is defined in <a href="https://tools.ietf.org/html/rfc7519" title="JSON Web Token (JWT)">RFC 7519</a> as being a JSON
+NumericDate field, which uses the UTC epoch. This is in contrast to the TAI epoch used elsewhere within the NMOS APIs,
+so implementers should take care to ensure they are using the correct epoch.</p>
+<p>API implementations MUST reject a token where the <code>exp</code> claim value is less than the current UTC time. Refer to the
+<a href="#access-token-lifetime">Token Lifetime</a> Section for guidance on setting this value.</p>
+<h3 id="iat">iat</h3>
+<p><em>Token issued at time</em></p>
+<p>The <code>iat</code> (issued at) claim MAY be included in the token. As with the <code>exp</code> claim this claim uses UTC. API
+implementations MUST reject a token where the <code>iat</code> claim is greater than the current UTC time. Authorization Servers
+SHALL issue a token with an <code>iat</code> claim that is equal to the UTC time at which the token is issued.</p>
+<h3 id="client_id">client_id</h3>
+<p><em>Client ID that requested the token</em></p>
+<p>The <code>client_id</code> claim MUST be included in the token, unless the <code>azp</code> claim is present in which case it is optional.
+This claim corresponds with the client identifier of the OAuth 2.0 client that requested the token. The value of this
+claim MUST exactly match the full client identifier to which the token was granted.</p>
+<h3 id="azp">azp</h3>
+<p><em>Client ID that requested the token</em></p>
+<p>The <code>azp</code> claim MUST be included in the token when the <code>client_id</code> is omitted. The <code>azp</code> claim SHOULD NOT be included
+in the token when the <code>client_id</code> is included in order to minimise token size. This claim is included in order to
+support Authorization Servers which support the OpenID Connect specification. This claim corresponds with the client
+identifier of the OAuth 2.0 client that requested the token. The value of this claim MUST exactly match the full client
+identifier to which the token was granted.</p>
+<h3 id="scope">scope</h3>
+<p><em>List of scopes associated with the token</em></p>
+<p>The <code>scope</code> claim SHOULD be included in the token, if the authorization request included a scope parameter, as per
+Section 2.2.2 of the draft RFC <a href="https://datatracker.ietf.org/doc/draft-ietf-oauth-access-token-jwt/" title="JSON Web Token Profile for OAuth 2.0 Access Tokens">Profile for OAuth 2.0 Access Tokens</a>. The value of the "scope"
+claim is a JSON string containing a space-separated list of scopes associated with the token, in the format described
+in Section 3.3 of <a href="https://tools.ietf.org/html/rfc6749" title="The OAuth 2.0 Authorization Framework">RFC6749</a>.</p>
+<p>The value of each scope corresponds to the namespace identifier for a given NMOS
+API (e.g. "registration", "query", etc.) to which the user is requesting access and determines how the private
+<code>x-nmos-*</code> claims, detailed below, are populated.</p>
+<p>Presence of a <code>scope</code> matching an NMOS API grants implicit read only access to some API base paths as specified in
+<a href="../Behaviour%20-%20Resource%20Servers/">Resource Servers</a>.</p>
+<h3 id="nbf">nbf</h3>
+<p><em>Not before time</em></p>
+<p>The <code>nbf</code> (not before) claim MAY be included in the token.  The "nbf" (not before) claim identifies the time before 
+which the JWT MUST NOT be accepted for processing.  The processing of the "nbf" claim requires that the current 
+date/time MUST be after or equal to the not-before date/time listed in the "nbf" claim. 
+This is defined in  <a href="https://tools.ietf.org/html/rfc7519" title="JSON Web Token (JWT)">RFC 7519</a>.</p>
+<h2 id="private-claims">Private Claims</h2>
+<p><a href="https://tools.ietf.org/html/rfc7519" title="JSON Web Token (JWT)">RFC 7519</a> allows for "private claims". The following claims are used to identify the API specification(s) a given
+token is used for.</p>
+<h3 id="x-nmos-">x-nmos-*</h3>
+<p><em>Contains information particular to the NMOS API the token is intended for</em></p>
+<p>One or more <code>x-nmos-*</code> claims SHOULD be included in the token. The claim name begins <code>x-nmos-</code> followed by the namespace
+identifier found in the URL for that given API (e.g. "registration", "query", etc.).</p>
+<p>Presence of an <code>x-nmos-*</code> claim matching an NMOS API grants implicit read only access to some API base paths as
+specified in <a href="../Behaviour%20-%20Resource%20Servers/">Resource Servers</a>.</p>
+<p>The value of the claim is a JSON object, indicating access permissions for the API. An omitted <code>x-nmos-*</code> object
+indicates that no access is permitted to the namespace-identified API beyond what may be granted by the presence of
+a matching <code>scope</code>.</p>
+<h4 id="the-access-permissions-object">The Access Permissions Object</h4>
+<p>The value of each <code>x-nmos-*</code> claim is the access permissions object for the given user for that specific API. The access
+permission object consists of <code>key:value</code> pairs in which the <code>key</code> denotes a specific permission. General permissions
+include:
+*   <strong>write</strong> - ability to insert a new, or edit an existing, resource. This takes the form of <em>POST</em>, <em>PUT</em>,
+    <em>PATCH</em> and <em>DELETE</em> HTTP request verbs.
+*   <strong>read</strong> - ability to retrieve the resource. This takes the form of <em>GET</em>, <em>OPTIONS</em> and <em>HEAD</em> HTTP request
+    verbs.</p>
+<p>If a permission has not been granted to a specific user, the permission key MUST be omitted, to minimise the
+token size. If no permissions are given for a specific API, the <code>x-nmos-*</code> claim relating to that API key MUST be
+removed to ensure token size is minimised.</p>
+<p>If a permission of "write" is given in the access permission object, and the intention is that the given user
+also has "read" access to the specific API, a permission key of "read" MUST also be present in the access permissions
+object.</p>
+<p>Individual AMWA specifications MAY specify additional permissions keys specific to the individual API. These MUST be
+registered in the <a href="https://github.com/AMWA-TV/nmos-parameter-registers">AMWA NMOS Parameter Registers</a>. It is recommended that new
+permissions keys are only introduced alongside a new version of a given AMWA NMOS API in order to minimise the risk of
+incompatibility.</p>
+<p>The <code>value</code> corresponding to each permission key is a JSON array containing URL path specifiers that the user is
+permitted to perform the specific request against. The asterisk wildcard ('<code>*</code>') is permitted in the path
+specifiers.</p>
+<p>A '<code>*</code>' wildcard can be used to replace zero or more characters (this is equivalent to the <code>.*</code> regex pattern). The
+wildcard may encompass multiple path segments, may be used multiple times, and may appear at any position in the path
+permission (e.g. <code>single*</code> or <code>single/senders/*/constraints</code> would both match with
+<code>/x-nmos/connection/v1.1/single/senders/ea388089-9ffb-4a81-b109-a19da845b3b6/constraints</code>). It is RECOMMENDED that the
+wildcard is used in place of NMOS resource identifiers, such as UUIDs, to minimise token size. Specific identifiers MAY
+be used in path specifiers if defining access to a small number of resources (such as a single node or device.)</p>
+<p>Resource Servers MUST apply <a href="https://tools.ietf.org/html/rfc3986#section-6" title="RFC 3986 URI Generic Syntax">URL Normalization</a> to request URLs in order to remove '<code>..</code>' path
+segments, which could otherwise introduce vulnerabilities. For example, the path
+<code>/x-nmos/connection/v1.1/single/../bulk</code> MUST NOT be permitted by <code>single/*</code> path permission.</p>
+<p>For NMOS API URL's that follow the standard pattern of:</p>
+<p><code>&lt;api_proto&gt;://&lt;hostname&gt;:&lt;port&gt;/x-nmos/&lt;api type&gt;/&lt;api version&gt;/</code></p>
+<p>all path specifiers MUST start <em>after</em> the API version and its trailing slash. For example, authorizing a user to read
+all <em>single resources</em> and modify the configuration of all  <em>single senders</em> at a Connection Management interface would
+result in a claim of:</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"x-nmos-connection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"single/*"</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"write"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"single/senders/*"</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<h4 id="example-x-nmos-claims">Example <code>x-nmos-*</code> Claims</h4>
+<p>Examples of <code>x-nmos-*</code> claims are shown below. This would permit querying an IS-04 Registry, and modifying
+<em>single</em> connections via an IS-05 connection management interface, but would not permit the user to register a resource
+with an IS-04 Registry.</p>
+<div class="highlight"><pre><span></span><code><span class="nt">"x-nmos-registration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">]</span>
+<span class="p">},</span>
+<span class="nt">"x-nmos-query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"write"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"subscriptions/*"</span><span class="p">]</span>
+<span class="p">},</span>
+<span class="nt">"x-nmos-connection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"write"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"single/*"</span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>Authorization Servers MAY only have support for certain NMOS API specifications, and MAY only support certain versions
+of such APIs.</p>
+<h2 id="size-considerations">Size Considerations</h2>
+<p>While <a href="https://tools.ietf.org/html/rfc7519" title="JSON Web Token (JWT)">RFC 7519</a> does not prescribe a maximum size for an OAuth 2.0 JSON Web Token, it should be noted that
+these tokens are typically used within an HTTP header. While HTTP does not define a header size limit, 8KByte is a
+common limitation in HTTP server implementations. Specification writers should be mindful of this when designing API
+claims, and ensure that enough space is available in the header for both the token and all other HTTP headers.</p>
+<h2 id="example-access-token-claim-set">Example Access Token Claim Set</h2>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"iss"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://auth.example.com"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"sub"</span><span class="p">:</span><span class="w"> </span><span class="s2">"username@example.com"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"aud"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"https://node-*.example.com"</span><span class="p">],</span>
+<span class="w">  </span><span class="nt">"iat"</span><span class="p">:</span><span class="w"> </span><span class="mi">1548779460</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"exp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1548783060</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"registration query connection"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"client_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hopy0dNRPNTiGJDqPfqYwGmw"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"x-nmos-registration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"x-nmos-query"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"write"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"subscriptions/*"</span><span class="p">]</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nt">"x-nmos-connection"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"read"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"*"</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"write"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"single/*"</span><span class="p">]</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="access-token-lifetime">Access Token Lifetime</h2>
+<p>A given Access Token for an NMOS API may be used on more than one Node or Registry instance. If one of these Nodes or
+Registries is compromised, it is possible for that entity to re-use it itself maliciously. While the precise duration
+of token validity should be left to implementers and administrators based on the risk profile, these tokens SHOULD be
+valid for no more than one hour.</p>
+<p>However, if Access Tokens are too short-lived, the number of refresh requests to the Authorization Server for new
+tokens starts to become a significant overhead, and any latency involved in using a token may cause it to become
+invalid during transit. As such tokens SHOULD be valid for at least 30 seconds.</p>
+<p align="center">30 seconds < TOKEN LIFETIME < 1 hour</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      
+      
+        
+        
+      <script id="__config" type="application/json">{"annotate":null,"base":"..","features":[],"redirect":null,"search":"../assets/javascripts/workers/search.7d14d953.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":{"provider":"mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.8dcc8e9c.min.js"></script>
+      
+        <script src="../javascripts/json-viewer.js"></script>
+      
+        <script src="../javascripts/amwa-branding.js"></script>
+      
+    
+  </body>
+</html>

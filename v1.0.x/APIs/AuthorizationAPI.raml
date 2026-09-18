@@ -1,0 +1,341 @@
+#%RAML 1.0
+
+# AMWA NMOS IS-10 Authorization: NMOS Authorization API with JSON Web Tokens (JWTs)
+# (c) AMWA 2020
+
+title: NMOS Authorization
+baseUri: https://api.example.com
+mediaType: application/json
+documentation:
+  - title: Overview
+    content: |
+      The NMOS Authorization API is exposed by an Authorization Server as a standard interface for requesting, revoking,
+      and managing tokens and client registration.
+
+      Authorization Servers may use alternative paths for the required endpoints, provided these are reflected in the
+      Authorization Server Metadata. The endpoints may share a common base path that is the path component of the
+      issuer identifier or **api_selector**, for example 'x-nmos/auth/{api version}', but this is not mandatory.
+  - title: Endpoint Discovery
+    content: |
+      The Authorization Server URL is discoverable using unicast and/or multicast DNS using the '\_nmos-auth.\_tcp'
+      service name.
+  - title: Use of HTTPS/TLS
+    content: |
+      The Authorization Server MUST require the use of TLS when interacting with the token and authorization endpoints.
+
+securitySchemes:
+  basic:
+    type: Basic Authentication
+    displayName: Basic Authentication
+    description: |
+      This API supports Basic Authentication using client ID and client secret as username and password credentials respectively.
+  private:
+    type: JSON Web Token Authentication
+    displayName: JSON Web Token Authentication
+    description: |
+      This API supports authentication using a JSON Web Token, signed by a private key which the Authorization Server holds the corresponding public key for.
+
+traits:
+  OAuthBasic:
+    description: Basic authentication using Client ID and client Secret
+    usage: Applied in accordance with RFC 6749
+    headers:
+      Authorization:
+        displayName: OAuth 2.0 Client Secret Basic Authentication
+        description: Colon-seperated, base-64 encoded string, of Client ID and Client Secret
+        type: string
+        required: true
+  OAuthPrivate:
+    description: Authentication using JSON Web Token
+    usage: Applied in accordance with RFC 7523
+    QueryParameters:
+      client_assertion_type:
+        description: The identifier for a Bearer JWT
+        required: true
+        example: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+      client_assertion:
+        description: The contents of the JSON Web Token used for authentication
+        required: true
+        example: eyJhbGciOiJSUzI1NiIsInR5cCI....
+  AuthorizationCodeRequest:
+    queryParameters:
+      response_type:
+        description: Type of OAuth 2.0 response. MUST be set to "code"
+        required: true
+        example: response_type=code
+      client_id:
+        description: The identifier of the client authenticating
+        required: true
+        example: client_id=s6BhdRkqt3
+      redirect_uri:
+        description: URI to direct resource owner's user-agent back to clients
+        example: redirect_uri=https%3A%2F%2Fclient%2Eexample%2Ecom%2Fcb
+      scope:
+        description: The scope of the access request
+        required: false
+        example: scope=photos
+      state:
+        description: Value used by client to maintain state between request and callback
+        required: false
+        example: state=xyz
+      code_challenge:
+        description: Derived from the code_verifier - a high-entropy cryptographic random string
+        required: false
+      code_challenge_method:
+        description: Code verifier transformation method
+        required: false
+        enum: [plain, S256]
+        default: plain
+
+types:
+  TokenAuthorizeRequest:
+    properties:
+      grant_type:
+        description: The OAuth 2.0 grant type of the request
+        type: string
+        required: true
+      code:
+        description:  The authorization code received from the authorization server
+        type: string
+        required: true
+      redirect_uri:
+        description: Absolute URI used by the authorization server to redirect the user-agent, previously established during client registration
+        type: string
+        required: true
+      client_id:
+        description: The identifier of the client authenticating
+        type: string
+        required: true
+      code_verifier:
+        description: Client-generated, high-entropy cryptographic random STRING with a minimum length of 43 characters and a maximum length of 128 characters
+        type: string
+        required: false
+  TokenCredentialsRequest:
+    properties:
+      grant_type:
+        description: The OAuth 2.0 grant type of the request
+        type: string
+        required: true
+      client_id:
+        description: The identifier of the client authenticating
+        type: string
+        required: true
+      client_assertion_type:
+        description: The identifier for a Bearer JWT
+        type: string
+        required: false
+      client_assertion:
+        description: The contents of the JSON Web Token used for authentication
+        type: string
+        required: false
+  TokenRefreshRequest:
+    properties:
+        grant_type:
+          description: MUST be set to "refresh_token"
+          required: true
+        refresh_token:
+          description: The Refresh Token issued to the client inside the Bearer Token
+          required: true
+        scope:
+          description: The scope of the access request
+          required: false
+  RevokeRequest:
+    properties:
+      access_token:
+        description: The token (access / refresh) that the client wants to revoke
+        required: true
+      token_type_hint:
+        description: A hint about the type of the token submitted for revocation
+        required: true
+        enum: [ access_token, refresh_token ]
+
+/{registration_endpoint_path}:
+  displayName: OAuth 2.0 Dynamic Client Registration endpoint
+  uriParameters:
+    registration_endpoint_path:
+      description: |
+        This path is defined by the **registration_endpoint** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
+      type: string
+      example: "register"
+  post:
+    description: |
+      Resource for registering clients with the authorization server.
+      See [RFC 7591](https://tools.ietf.org/html/rfc7591).
+    body:
+        type: !include schemas/register_client_request.json
+        examples:
+          AuthCodeGrant: !include ../examples/register-authorization-code-grant-client-post-request.json
+          ClientCredentialsGrant: !include ../examples/register-client-credentials-grant-client-post-request.json
+    responses:
+      201:
+        body:
+          type: !include schemas/register_client_response.json
+          examples:
+            AuthCodeGrant: !include ../examples/register-authorization-code-grant-client-post-201.json
+            ClientCredentialsGrant: !include ../examples/register-client-credentials-grant-client-post-201.json
+      400:
+        description: Unsuccessful client registration (in line with Section 3.2.2. of RFC 7591)
+        body:
+          type: !include schemas/register_client_error_response.json
+          example: !include ../examples/register-client-post-400.json
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
+
+/{token_endpoint_path}:
+  displayName: OAuth 2.0 Token endpoint
+  uriParameters:
+    token_endpoint_path:
+      description: |
+        This path is defined by the **token_endpoint** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
+      type: string
+      example: "token"
+  post:
+    description: |
+      Method for requesting OAuth 2.0 Bearer Token (Authorization Code, Client Credentials and Refresh Token grants).
+
+      **Note**: The data flow is dependent on the chosen grant type (e.g. authorization_code, refresh_token, etc.)
+
+      **Note**: Request examples may be rendered as JSON objects, but should be passed in as "application/x-www-form-urlencoded"
+      MIME type, in accordance with [RFC 6749](https://tools.ietf.org/html/rfc6749).
+    securedBy: [ basic, private ]
+    is: ["OAuthBasic", "OAuthPrivate"]
+    body:
+      application/x-www-form-urlencoded:
+        type: TokenAuthorizeRequest | TokenCredentialsRequest | TokenRefreshRequest
+        examples:
+          AuthCodeGrant:
+            grant_type: authorization_code
+            code: SplxlOBeZQQYbYS6WxSbIA
+            redirect_uri: "http://client.example.com/"
+            client_id: ttwCD9hb4OckmcGDnmC3J3Jr
+          ClientCredentialsGrant:
+            grant_type: client_credentials
+            client_id: c1068569-80c1-48cf-982e-30c3f930dfe3
+            client_assertion_type: urn:ietf:params:oauth:client-assertion-type:jwt-bearer
+            client_assertion: eyJhbGciOiJSUzI1NiIsInR5cCI....
+          RefreshTokenGrant:
+            grant_type: refresh_token
+            refresh_token: tGzv3JOkF0XG5Qx2TlKWIA
+    responses:
+      200:
+        description: Successful request to obtain a Bearer Token, consisting of the Access Token and optionally
+          a Refresh Token to be used to request further Access Tokens.
+        body:
+          type: !include schemas/token_response.json
+          example: !include ../examples/token-post-200.json
+      400:
+        description: Unsuccessful token requests
+        body:
+          type: !include schemas/token_error_response.json
+          example: !include ../examples/token-post-400.json
+      401:
+        description: Unsuccessful Client Authentication
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
+
+/{jwks_uri_path}:
+  displayName: JSON Web Key Set endpoint
+  uriParameters:
+    jwks_uri_path:
+      description: |
+        This path is defined by the **jwks_uri** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
+      type: string
+      example: "jwks"
+  get:
+    description: |
+      Request the JSON Web Keys. See [RFC 7517](https://tools.ietf.org/html/rfc7517).
+    responses:
+      200:
+        description: Successful request to obtain JSON dictionary of available JSON Web Keys to validate token against.
+        body:
+          type: !include schemas/jwks_response.json
+          example: !include ../examples/jwks-get-200.json
+
+/{authorization_endpoint_path}:
+  displayName: OAuth 2.0 Authorization endpoint
+  uriParameters:
+    authorization_endpoint_path:
+      description: |
+        This path is defined by the **authorization_endpoint** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
+      type: string
+      example: "authorize"
+  get:
+    description: |
+      The client directs the resource owner to this URI, enabling the resource owner to approve the client.
+      See Section 4 of [RFC 6749](https://tools.ietf.org/html/rfc6749).
+    is: ["AuthorizationCodeRequest"]
+    responses:
+      200:
+        description: UI / Web Form for the resource owner to confirm the authorization.
+        body:
+          text/html:
+            type: file
+  post:
+    description: |
+      Means of confirming Resource Owner approval.
+      See [RFC 6749](https://tools.ietf.org/html/rfc6749).
+    is: ["AuthorizationCodeRequest"]
+    body:
+      properties:
+        confirm:
+          description: |
+            Boolean comfirmation of Resource Owner authorization.
+
+            **Note**: This is merely an example of one mechanism for obtaining the
+            resource owner's approval. This is not covered in an RFC and is implementation-specific.
+          type: boolean
+          required: true
+          example: true
+    responses:
+      302:
+        description: Redirection of endpoint to client URI
+        headers:
+          Location:
+            description: The redirect URI with the Authorization Code and State parameters added to the query component of the redirection URI.
+            type: string
+            required: true
+            example: |
+              HTTP/1.1 302 Found
+              Location: https://client.example.com/cb?code=SplxlOBeZQQYbYS6WxSbIA&state=xyz
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
+
+/{revocation_endpoint_path}:
+  displayName: OAuth 2.0 Token Revocation endpoint (optional)
+  uriParameters:
+    revocation_endpoint_path:
+      description: |
+        This path is defined by the **revocation_endpoint** in the OAuth 2.0 Authorization Server Metadata, as per
+        [RFC 8414](https://tools.ietf.org/html/rfc8414) Section 2.
+      type: string
+      example: "revoke"
+  post:
+    description: |
+      Endpoint for revoking specific Access/Refresh Tokens.
+      See [RFC 7009](https://tools.ietf.org/html/rfc7009).
+    securedBy: [ basic, private ]
+    is: ["OAuthBasic", "OAuthPrivate"]
+    body:
+      application/x-www-form-urlencoded:
+        type: RevokeRequest
+    responses:
+      200:
+        description: the token has been revoked successfully or if the client submitted an invalid token.
+  options:
+    description: A pre-flight check generally used for Cross-Origin Resource Sharing (CORS) purposes
+    responses:
+      200:
+      403:
