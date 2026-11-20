@@ -3,12 +3,6 @@
   "repository": "AMWA-TV/is-10",
   "documents": [
     {
-      "title": "Page not found",
-      "url": "https://specs.amwa.tv/is-10/latest/404/",
-      "text": "Page not found Page not found Page not found - AMWA IS-10 NMOS Authorization Specification Skip to content Page not found The page you requested could not be found. Return to the documentation home",
-      "repository": "AMWA-TV/is-10"
-    },
-    {
       "title": "AuthorizationAPI",
       "url": "https://specs.amwa.tv/is-10/latest/APIs/AuthorizationAPI/",
       "text": "AuthorizationAPI AuthorizationAPI AuthorizationAPI - AMWA IS-10 NMOS Authorization Specification Skip to content AuthorizationAPI The NMOS Authorization API is exposed by an Authorization Server as a standard interface for requesting, revoking, and managing tokens and client registration. Authorization Servers may use alternative paths for the required endpoints, provided these are reflected in the Authorization Server Metadata. The endpoints may share a common base path that is the path component of the issuer identifier or api_selector , for example 'x-nmos/auth/{api version}', but this is not mandatory. Open AuthorizationAPI API documentation",
