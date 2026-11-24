@@ -177,12 +177,6 @@
       "repository": "AMWA-TV/is-10"
     },
     {
-      "title": "Editing Files",
-      "url": "https://specs.amwa.tv/is-10/latest/images/",
-      "text": "Editing Files Editing Files Using the github URL: As a locally saved image: Editing Files - AMWA IS-10 NMOS Authorization Specification Skip to content Editing Files The PNG images within this repository can be edited by importing them into https://app.diagrams.net (previously https://draw.io ): Using the github URL: File -> Import From -> URL -> URL of diagram Note: The URL usually begins https://raw.githubusercontent.com/ ... As a locally saved image: File -> Import From -> Device -> Select Chosen File",
-      "repository": "AMWA-TV/is-10"
-    },
-    {
       "title": "AMWA IS-10 NMOS Authorization Specification",
       "url": "https://specs.amwa.tv/is-10/latest/",
       "text": "AMWA IS-10 NMOS Authorization Specification AMWA IS-10 NMOS Authorization Specification What does it do? Why does it matter? How does it work? Getting started AMWA IS-10 NMOS Authorization Specification - AMWA IS-10 NMOS Authorization Specification Skip to content AMWA IS-10 NMOS Authorization Specification What does it do? Allows an API server to accept or reject requests depending on what a client is authorized to do Why does it matter? Security in the control plane is essential Best practice is to limit what clients can do How does it work? Control client provides credentials and gets an access token Sends token with API requests Based on JSON Web Tokens and OAuth 2.0 Encryption is a prerequisite (see BCP-003-01) Getting started There is more information about the NMOS Specifications and their GitHub repos at https://specs.amwa.tv/nmos .",
